@@ -13,7 +13,7 @@ const Logo = () => {
         const fetchData = async () => {
             try {
                 const res = await getMediaSection();
-                setImageUrl(res.images.logo);
+                setImageUrl(res?.images?.logo);
             }
             catch (err) {
                 console.error(err);

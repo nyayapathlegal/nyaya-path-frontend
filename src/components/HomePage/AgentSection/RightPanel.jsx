@@ -30,7 +30,7 @@ const RightPanel = ({ steps, activeStep }) => {
             const fetchData = async () => {
                 try {
                     const res = await getMediaSection();
-                    setImageUrl(res.images.homeRightImage);
+                    setImageUrl(res?.images?.homeRightImage);
                 } 
                 catch (err) {
                     console.error(err);

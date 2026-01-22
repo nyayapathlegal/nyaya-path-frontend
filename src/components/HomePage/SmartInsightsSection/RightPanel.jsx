@@ -15,7 +15,7 @@ const RightPanel = ({ stepsSection, activeStep = 0 }) => {
         const fetchData = async () => {
             try {
                 const res = await getMediaSection();
-                setGuidanceSectionArr(res.images.guidanceSection);
+                setGuidanceSectionArr(res?.images?.guidanceSection);
             }
             catch (err) {
                 console.error(err);
