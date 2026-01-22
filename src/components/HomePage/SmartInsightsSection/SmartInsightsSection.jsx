@@ -18,10 +18,10 @@ export function SmartInsightsSection() {
             try {
                 const data = await getInsights();
                 setStepsData(data);
-                console.log("Fetched lawyer insights data:", data);
+                // console.log("Fetched insights data:", data);
             } 
             catch (error) {
-                console.error("Error fetching lawyer insights data:", error);
+                console.error("Error fetching insights data:", error);
                 setStepsData(INSIGHTS_FALLBACK);
             }   
         }

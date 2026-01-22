@@ -1,6 +1,6 @@
 export const MEDIA_FALLBACK = {
     images: {
-        logo: "/fallback/images/commonLogo.png",
+        logo: "/fallback/images/commonLogo.jpeg",
         homeRightImage: "/fallback/images/rightImage.jpg",
         guidanceSection: [
             "/fallback/images/guidanceImage1.jpg",

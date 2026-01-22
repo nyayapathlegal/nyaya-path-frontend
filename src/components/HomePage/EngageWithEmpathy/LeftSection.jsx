@@ -18,7 +18,7 @@ export const LeftSection = () => {
                 setData(data);
             } 
             catch {
-                console.log("Error fetching Lawyer Voice Data");
+                console.log("Error fetching Voice Data");
                 setData(VOICE_FALLBACK);
             }
         }

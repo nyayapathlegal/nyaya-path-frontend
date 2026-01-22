@@ -24,7 +24,7 @@ const itemVariants = {
 
 export default function SubServicePage({ data }) {
     const { service, sub } = data;
-    console.log(service.image);
+    // console.log(service.image);
     return (
         <section className="relative">
             {/* HERO */}

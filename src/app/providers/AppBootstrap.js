@@ -14,7 +14,7 @@ export default function AppBootstrap({ children }) {
             try {
                 // Backend validates authToken cookie
                 const data = await validateTokenAPI(); 
-                console.log("Bootstrap auth data:", data);
+                // console.log("Bootstrap auth data:", data);
                 // API should read HttpOnly cookie internally
 
                 if (!data?.user) {

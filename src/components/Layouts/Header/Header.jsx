@@ -4,6 +4,7 @@ import { X, Menu, ChevronDown, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { getNavItems } from "@/api/home/home.api";
 import Logo from "./Logo";
+import { HEADER_FALLBACK } from "@/config/fallbacks/headerFallback";
 
 const Ribbon = () => (
     <div className="relative bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 text-black py-3 px-4">
@@ -18,7 +19,7 @@ const Ribbon = () => (
 
 export function Header() {
 
-    const [navItems, setNavItems] = useState([]);
+    const [navItems, setNavItems] = useState(HEADER_FALLBACK.navItems);
     const [activeDropdown, setActiveDropdown] = useState(null);
     const [hoveredCategory, setHoveredCategory] = useState(null);
     const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(false);
@@ -49,7 +50,7 @@ export function Header() {
             }
             catch (error) {
                 console.log("Error fetching Navbar Data", error);
-                setNavItems([]);
+                setNavItems(HEADER_FALLBACK.navItems);
             }
         }
         fetchData();
@@ -175,7 +176,8 @@ export function Header() {
                         {/* Desktop Login */}
                         <div className="hidden lg:flex items-center space-x-4">
                             <Link
-                                href="/login"
+                                // href="/login"
+                                href={"/"}
                                 className="relative px-7 py-3 text-sm font-bold bg-white rounded-xl transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden group"
                             >
                                 <span className="relative z-10">Login</span>
@@ -246,7 +248,8 @@ export function Header() {
                             ))}
 
                             <Link
-                                href="/login"
+                                // href="/login"
+                                href="/"
                                 onClick={() => setIsMobileMenuVisible(false)}
                                 className="block w-full text-center px-7 py-4 mt-6 text-sm font-bold bg-white text-black rounded-xl hover:bg-blue-50 transition-all duration-200 shadow-lg active:scale-95"
                             >

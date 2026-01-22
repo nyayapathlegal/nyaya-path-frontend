@@ -75,7 +75,7 @@ const NavbarCMS = () => {
                 const res = await getNavItems();
                 const items = res.navItems;
 
-                console.log("Fetched navbar items:", items);
+                // console.log("Fetched navbar items:", items);
                 setNavbarItems(items);
                 setActiveTab(items[0]?.id ?? null);
             } catch (err) {

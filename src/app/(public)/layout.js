@@ -6,6 +6,7 @@ export default function PublicLayout({ children }) {
     
     const pathname = usePathname();
     const showLayout  = !pathname.includes("login");
+    
     return (
         <>
             {showLayout && <Header />}

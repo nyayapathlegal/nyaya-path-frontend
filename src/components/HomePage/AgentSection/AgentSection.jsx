@@ -14,7 +14,7 @@ export function AgentSection() {
         async function fetchStepsData() {
             try {
                 const data = await getPracticeAreas();
-                console.log(data)
+                // console.log(data)
                 setStepsData(data);    
             }
             catch (error) {

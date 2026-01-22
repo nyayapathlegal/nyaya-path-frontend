@@ -20,7 +20,7 @@ export function ASIHighlights() {
                 setData(data);
             } 
             catch {
-                console.log("Error fetching Lawyer Second Features Data");
+                console.log("Error fetching Features Data");
                 setData(FEATURES_POWEREDBY_FALLBACK);
             }
         }
