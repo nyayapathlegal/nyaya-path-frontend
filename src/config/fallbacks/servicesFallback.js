@@ -17,7 +17,6 @@ export const SERVICES_FALLBACK = {
                         "Employment Law Guidance",
                         "Consumer Rights Advisory",
                         "Succession & Inheritance Advisory",
-                        "abc"
                     ]
                 },
                 {
