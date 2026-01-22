@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-
+import { MEDIA_FALLBACK } from "@/config/fallbacks/mediaFallback";
 const HeaderPages = ({ page }) => {
   const { hero, section } = page;
 
@@ -25,7 +25,10 @@ const HeaderPages = ({ page }) => {
       {/* ================= HERO SECTION ================= */}
       <section
         className="relative h-screen flex items-center bg-cover bg-center pt-10"
-        style={{ backgroundImage: `url(${hero.image})` }}
+        style={{ 
+          // backgroundImage: `url(${hero.image})` 
+           backgroundImage: `url(${MEDIA_FALLBACK.images.headerPageImage})`,
+        }}
       >
         {/* Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/70 to-slate-900/40" />

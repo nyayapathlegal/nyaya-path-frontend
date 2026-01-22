@@ -1,12 +1,14 @@
 export const MEDIA_FALLBACK = {
     images: {
-        logo: "/fallback/images/commonLogo.jpeg",
+        logo: "/fallback/images/commonLogo.png",
         homeRightImage: "/fallback/images/rightImage.jpg",
         guidanceSection: [
             "/fallback/images/guidanceImage1.jpg",
             "/fallback/images/guidanceImage2.jpg",
             "/fallback/images/guidanceImage3.jpg"
-        ]
+        ],
+        headerPageImage: "/fallback/images/rightImage.jpg",
+        serviceImage:"/fallback/images/rightImage.jpg",
     },
     videos: {
         heroBgVideo: "/fallback/videos/bg_video.mp4",

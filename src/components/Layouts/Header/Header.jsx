@@ -4,7 +4,6 @@ import { X, Menu, ChevronDown, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { getNavItems } from "@/api/home/home.api";
 import Logo from "./Logo";
-import { HEADER_FALLBACK } from "@/config/fallbacks/headerFallback";
 
 const Ribbon = () => (
     <div className="relative bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 text-black py-3 px-4">
@@ -19,7 +18,7 @@ const Ribbon = () => (
 
 export function Header() {
 
-    const [navItems, setNavItems] = useState(HEADER_FALLBACK.navItems);
+    const [navItems, setNavItems] = useState([]);
     const [activeDropdown, setActiveDropdown] = useState(null);
     const [hoveredCategory, setHoveredCategory] = useState(null);
     const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(false);
@@ -50,7 +49,7 @@ export function Header() {
             }
             catch (error) {
                 console.log("Error fetching Navbar Data", error);
-                setNavItems(HEADER_FALLBACK.navItems);
+                setNavItems([]);
             }
         }
         fetchData();

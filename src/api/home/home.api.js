@@ -2,6 +2,7 @@ import { MEDIA_FALLBACK } from "@/config/fallbacks/mediaFallback";
 import api from "../../utils/api";
 import { CLIENT_EXRERIENCE_FALLBACK, COUNTER_FALLBACK, EXPERTIES_OVERVIEW_FALLBACK, FEATURES_FALLBACK, FEATURES_POWEREDBY_FALLBACK, FOOTER_FALLBACK, HERO_FALLBACK, INSIGHTS_FALLBACK, OPPORTUNITIES_FALLBACK, PERSONALIZED_CONSULTATION_FALLBACK, PRACTICE_AREAS_FALLBACK, VISION_FALLBACK, VOICE_FALLBACK } from "@/config/fallbacks/homepageFallbacks";
 import { SERVICES_FALLBACK } from "@/config/fallbacks/servicesFallback";
+import { HEADER_FALLBACK } from "@/config/fallbacks/headerFallback";
 
 // Media Section
 export async function getMediaSection() {
@@ -16,7 +17,7 @@ export async function getNavItems() {
     // const response = await api.get("/nav-items");
     // return response.data;
 
-    return null;
+    return HEADER_FALLBACK;
 }
 
 // Hero Section

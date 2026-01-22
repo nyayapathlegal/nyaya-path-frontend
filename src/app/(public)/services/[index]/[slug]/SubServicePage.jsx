@@ -1,3 +1,4 @@
+import { MEDIA_FALLBACK } from "@/config/fallbacks/mediaFallback";
 import { motion } from "framer-motion";
 
 const listVariants = {
@@ -31,7 +32,8 @@ export default function SubServicePage({ data }) {
             <div
                 className="relative h-[45vh] flex items-center justify-center"
                 style={{
-                    backgroundImage: `url(${service.image})`,
+                    // backgroundImage: `url(${service.image})`,
+                    backgroundImage: `url(${MEDIA_FALLBACK.images.serviceImage})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                 }}

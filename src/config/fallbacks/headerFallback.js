@@ -1,155 +1,302 @@
 export const HEADER_FALLBACK = {
-    navItems: [{
-        id: "startup-solutions",
-        title: "Startup Solutions",
-        path: "/startup-solutions",
-        children: [
-            {
-                id: "incorporation",
-                title: "Business Incorporation",
-                children: [
-                    {
-                        id: "corp",
-                        slug: "corporation",
-                        title: "Corporation Setup",
-                        desc: "Set up your corporation with all legal essentials.",
-                        path: "/startup-solutions/incorporation/corporation",
-                        page: {
-                            hero: {
-                                heading: "Incorporate Your Corporation",
-                                subheading: "Launch professionally",
-                                description: "Full support for registering and starting your corporation.",
-                                image: "https://via.placeholder.com/600x400?text=Corporation"
-                            },
-                            section: {
-                                title: "Incorporation Details",
-                                content: "All corporate filings, registrations, and compliance handled."
+    navItems: [
+        {
+            id: "business-setup",
+            title: "Business Setup",
+            path: "/business-setup",
+            children: [
+                {
+                    id: "company-registration",
+                    title: "Company Registration",
+                    children: [
+                        {
+                            id: "private-limited",
+                            slug: "private-limited-company",
+                            title: "Private Limited Company",
+                            desc: "Register your private limited company in India.",
+                            path: "/business-setup/company-registration/private-limited-company",
+                            page: {
+                                hero: {
+                                    heading: "Private Limited Company Registration",
+                                    subheading: "Start your company legally",
+                                    description: "Complete incorporation, MCA filings, PAN, TAN & compliance support.",
+                                    image: "https://via.placeholder.com/600x400?text=Private+Limited"
+                                },
+                                section: {
+                                    title: "What We Handle",
+                                    content: "Name approval, incorporation, DIN, DSC, PAN, TAN and ROC compliance."
+                                }
+                            }
+                        },
+                        {
+                            id: "opc",
+                            slug: "one-person-company",
+                            title: "One Person Company",
+                            desc: "Single-owner company registration.",
+                            path: "/business-setup/company-registration/one-person-company",
+                            page: {
+                                hero: {
+                                    heading: "One Person Company Registration",
+                                    subheading: "Solo founder solution",
+                                    description: "Ideal structure for single entrepreneurs with limited liability.",
+                                    image: "https://via.placeholder.com/600x400?text=OPC"
+                                },
+                                section: {
+                                    title: "OPC Benefits",
+                                    content: "Limited liability, easy compliance, separate legal entity."
+                                }
+                            }
+                        },
+                        {
+                            id: "llp",
+                            slug: "llp-registration",
+                            title: "LLP Registration",
+                            desc: "Flexible structure with limited liability.",
+                            path: "/business-setup/company-registration/llp-registration",
+                            page: {
+                                hero: {
+                                    heading: "LLP Registration",
+                                    subheading: "Flexible & compliant",
+                                    description: "Perfect for professionals and partnerships.",
+                                    image: "https://via.placeholder.com/600x400?text=LLP"
+                                },
+                                section: {
+                                    title: "LLP Services",
+                                    content: "Incorporation, agreement drafting, PAN, TAN and filings."
+                                }
                             }
                         }
-                    },
-                    {
-                        id: "sole-proprietor",
-                        slug: "sole-proprietorship",
-                        title: "Sole Proprietorship",
-                        desc: "Quick registration for sole proprietors.",
-                        path: "/startup-solutions/incorporation/sole-proprietorship",
-                        page: {
-                            hero: {
-                                heading: "Sole Proprietorship Setup",
-                                subheading: "Simple and fast",
-                                description: "Legal registration for solo entrepreneurs with ease.",
-                                image: "https://via.placeholder.com/600x400?text=Sole+Proprietor"
-                            },
-                            section: {
-                                title: "Services Provided",
-                                content: "Documentation, licenses, and guidance for proprietorship."
+                    ]
+                },
+                {
+                    id: "government-registrations",
+                    title: "Government Registrations",
+                    children: [
+                        {
+                            id: "gst",
+                            slug: "gst-registration",
+                            title: "GST Registration",
+                            desc: "GST registration and compliance support.",
+                            path: "/business-setup/government-registrations/gst-registration",
+                            page: {
+                                hero: {
+                                    heading: "GST Registration",
+                                    subheading: "Tax compliance made easy",
+                                    description: "Fast GST registration with expert guidance.",
+                                    image: "https://via.placeholder.com/600x400?text=GST"
+                                },
+                                section: {
+                                    title: "GST Services",
+                                    content: "New registration, modification, cancellation & advisory."
+                                }
+                            }
+                        },
+                        {
+                            id: "msme",
+                            slug: "msme-registration",
+                            title: "MSME / Udyam",
+                            desc: "Udyam registration for businesses.",
+                            path: "/business-setup/government-registrations/msme-registration",
+                            page: {
+                                hero: {
+                                    heading: "MSME Registration",
+                                    subheading: "Unlock government benefits",
+                                    description: "Official Udyam registration with certificate.",
+                                    image: "https://via.placeholder.com/600x400?text=MSME"
+                                },
+                                section: {
+                                    title: "MSME Benefits",
+                                    content: "Subsidies, priority lending, government schemes."
+                                }
                             }
                         }
-                    }
-                ]
-            },
-            {
-                id: "compliance-services",
-                title: "Compliance Services",
-                children: [
-                    {
-                        id: "tax-registration",
-                        slug: "tax-registration",
-                        title: "Tax Registration",
-                        desc: "Register for GST, VAT, and other taxes quickly.",
-                        path: "/startup-solutions/compliance-services/tax-registration",
-                        page: {
-                            hero: {
-                                heading: "Tax Registration",
-                                subheading: "Stay compliant",
-                                description: "Fast and accurate registration for business taxes.",
-                                image: "https://via.placeholder.com/600x400?text=Tax"
-                            },
-                            section: {
-                                title: "Tax Services",
-                                content: "GST, VAT, and other government compliance handled."
+                    ]
+                }
+            ]
+        },
+
+        {
+            id: "tax-compliance",
+            title: "Tax & Compliance",
+            path: "/tax-compliance",
+            children: [
+                {
+                    id: "tax-filing",
+                    title: "Tax Filing",
+                    children: [
+                        {
+                            id: "itr",
+                            slug: "income-tax-return",
+                            title: "Income Tax Return",
+                            desc: "ITR filing for individuals & businesses.",
+                            path: "/tax-compliance/tax-filing/income-tax-return",
+                            page: {
+                                hero: {
+                                    heading: "Income Tax Return Filing",
+                                    subheading: "File accurately & on time",
+                                    description: "Expert-assisted ITR filing with tax optimization.",
+                                    image: "https://via.placeholder.com/600x400?text=ITR"
+                                },
+                                section: {
+                                    title: "Who We Serve",
+                                    content: "Individuals, proprietors, LLPs, companies."
+                                }
+                            }
+                        },
+                        {
+                            id: "gst-return",
+                            slug: "gst-return-filing",
+                            title: "GST Return Filing",
+                            desc: "Monthly & annual GST returns.",
+                            path: "/tax-compliance/tax-filing/gst-return-filing",
+                            page: {
+                                hero: {
+                                    heading: "GST Return Filing",
+                                    subheading: "Stay compliant",
+                                    description: "Accurate GSTR-1, GSTR-3B & annual returns.",
+                                    image: "https://via.placeholder.com/600x400?text=GST+Return"
+                                },
+                                section: {
+                                    title: "GST Coverage",
+                                    content: "Regular, composition & nil return filing."
+                                }
                             }
                         }
-                    },
-                    {
-                        id: "trademark",
-                        slug: "trademark-filing",
-                        title: "Trademark Filing",
-                        desc: "Protect your brand with trademark registration.",
-                        path: "/startup-solutions/compliance-services/trademark-filing",
-                        page: {
-                            hero: {
-                                heading: "Trademark Registration",
-                                subheading: "Secure your brand",
-                                description: "File trademarks and intellectual property easily.",
-                                image: "https://via.placeholder.com/600x400?text=Trademark"
-                            },
-                            section: {
-                                title: "IP Services",
-                                content: "Trademark, copyright, and IP registration services."
+                    ]
+                }
+            ]
+        },
+
+        {
+            id: "ip-services",
+            title: "Trademark & IP",
+            path: "/trademark-ip",
+            children: [
+                {
+                    id: "trademark-services",
+                    title: "Trademark Services",
+                    children: [
+                        {
+                            id: "trademark-registration",
+                            slug: "trademark-registration",
+                            title: "Trademark Registration",
+                            desc: "Protect your brand identity.",
+                            path: "/trademark-ip/trademark-services/trademark-registration",
+                            page: {
+                                hero: {
+                                    heading: "Trademark Registration",
+                                    subheading: "Secure your brand",
+                                    description: "End-to-end trademark filing & follow-up.",
+                                    image: "https://via.placeholder.com/600x400?text=Trademark"
+                                },
+                                section: {
+                                    title: "Trademark Scope",
+                                    content: "Search, filing, objection handling & renewal."
+                                }
                             }
                         }
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        id: "business-growth",
-        title: "Business Growth",
-        path: "/business-growth",
-        children: [
-            {
-                id: "funding",
-                title: "Funding & Investment",
-                children: [
-                    {
-                        id: "seed-funding",
-                        slug: "seed-funding",
-                        title: "Seed Funding",
-                        desc: "Get initial investment for your startup.",
-                        path: "/business-growth/funding/seed-funding",
-                        page: {
-                            hero: {
-                                heading: "Seed Funding",
-                                subheading: "Kickstart your startup",
-                                description: "Find investors and secure early-stage capital.",
-                                image: "https://via.placeholder.com/600x400?text=Seed+Funding"
-                            },
-                            section: {
-                                title: "Funding Details",
-                                content: "Connect with angel investors and seed funds quickly."
+                    ]
+                }
+            ]
+        },
+
+        {
+            id: "ngo-services",
+            title: "NGO Services",
+            path: "/ngo-services",
+            children: [
+                {
+                    id: "ngo-registration",
+                    title: "NGO Registration",
+                    children: [
+                        {
+                            id: "section-8",
+                            slug: "section-8-company",
+                            title: "Section 8 Company",
+                            desc: "NGO registration under Companies Act.",
+                            path: "/ngo-services/ngo-registration/section-8-company",
+                            page: {
+                                hero: {
+                                    heading: "Section 8 Company Registration",
+                                    subheading: "For non-profit organizations",
+                                    description: "Complete NGO incorporation & compliance support.",
+                                    image: "https://via.placeholder.com/600x400?text=Section+8"
+                                },
+                                section: {
+                                    title: "Included Services",
+                                    content: "Incorporation, 12A, 80G, CSR-1 assistance."
+                                }
                             }
                         }
-                    }
-                ]
-            },
-            {
-                id: "marketing",
-                title: "Marketing Services",
-                children: [
-                    {
-                        id: "digital-marketing",
-                        slug: "digital-marketing",
-                        title: "Digital Marketing",
-                        desc: "Promote your business online effectively.",
-                        path: "/business-growth/marketing/digital-marketing",
-                        page: {
-                            hero: {
-                                heading: "Digital Marketing Services",
-                                subheading: "Grow online",
-                                description: "SEO, social media, and ads to boost your brand.",
-                                image: "https://via.placeholder.com/600x400?text=Digital+Marketing"
-                            },
-                            section: {
-                                title: "Marketing Services",
-                                content: "Comprehensive digital strategies for startups."
+                    ]
+                }
+            ]
+        },
+
+        {
+            id: "legal-docs",
+            title: "Legal Documentation",
+            path: "/legal-documentation",
+            children: [
+                {
+                    id: "agreements",
+                    title: "Agreements",
+                    children: [
+                        {
+                            id: "nda",
+                            slug: "nda-agreement",
+                            title: "NDA Agreement",
+                            desc: "Protect confidential information.",
+                            path: "/legal-documentation/agreements/nda-agreement",
+                            page: {
+                                hero: {
+                                    heading: "Non-Disclosure Agreement",
+                                    subheading: "Protect your business",
+                                    description: "Legally drafted NDA for individuals & companies.",
+                                    image: "https://via.placeholder.com/600x400?text=NDA"
+                                },
+                                section: {
+                                    title: "Use Cases",
+                                    content: "Clients, employees, vendors & partners."
+                                }
                             }
                         }
-                    }
-                ]
-            }
-        ]
-    }
+                    ]
+                }
+            ]
+        },
+
+        {
+            id: "website-development",
+            title: "Website Development",
+            path: "/website-development",
+            children: [
+                {
+                    id: "web-services",
+                    title: "Web Services",
+                    children: [
+                        {
+                            id: "business-website",
+                            slug: "business-website",
+                            title: "Business Website",
+                            desc: "Professional websites for businesses.",
+                            path: "/website-development/web-services/business-website",
+                            page: {
+                                hero: {
+                                    heading: "Business Website Development",
+                                    subheading: "Build your online presence",
+                                    description: "Fast, responsive & SEO-friendly websites.",
+                                    image: "https://via.placeholder.com/600x400?text=Website"
+                                },
+                                section: {
+                                    title: "What You Get",
+                                    content: "Design, hosting guidance, SEO setup & maintenance."
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
     ]
 };
