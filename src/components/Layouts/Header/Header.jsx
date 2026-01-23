@@ -146,9 +146,9 @@ export function Header() {
 
                                                             {hoveredCategory === cat.id && cat.children && (
                                                                 <div className="ml-5 space-y-1 border-l-2 border-blue-200 pl-3">
-                                                                    {cat.children.map((last) => (
+                                                                    {cat.children.map((last, index) => (
                                                                         <Link
-                                                                            key={last.id}
+                                                                            key={`${last.id}-${index}`}
                                                                             href={`/navitem/${last.slug}`}
                                                                             className="block px-4 py-2.5 text-sm text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-all font-medium"
                                                                             onClick={() => {

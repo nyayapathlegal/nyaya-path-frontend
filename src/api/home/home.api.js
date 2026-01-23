@@ -1,119 +1,76 @@
-import { MEDIA_FALLBACK } from "@/config/fallbacks/mediaFallback";
 import api from "../../utils/api";
-import { CLIENT_EXRERIENCE_FALLBACK, COUNTER_FALLBACK, EXPERTIES_OVERVIEW_FALLBACK, FEATURES_FALLBACK, FEATURES_POWEREDBY_FALLBACK, FOOTER_FALLBACK, HERO_FALLBACK, INSIGHTS_FALLBACK, OPPORTUNITIES_FALLBACK, PERSONALIZED_CONSULTATION_FALLBACK, PRACTICE_AREAS_FALLBACK, VISION_FALLBACK, VOICE_FALLBACK } from "@/config/fallbacks/homepageFallbacks";
-import { SERVICES_FALLBACK } from "@/config/fallbacks/servicesFallback";
-import { HEADER_FALLBACK } from "@/config/fallbacks/headerFallback";
+
+async function safeGet(url) {
+    try {
+        const response = await api.get(url);
+        return response.data;
+    } 
+    catch (err) {
+        console.error(`API error [${url}]:`, err);
+        return err;
+    }
+}
 
 // Media Section
-export async function getMediaSection() {
-    const response = await api.get("/media-items");
-    return response.data;
-
-    // return MEDIA_FALLBACK;
-}
+export const getMediaSection = () =>
+    safeGet("/media-items");
 
 // Navigation
-export async function getNavItems() {
-    const response = await api.get("/nav-items");
-    return response.data;
-
-    // return HEADER_FALLBACK;
-}
+export const getNavItems = () =>
+    safeGet("/nav-items");
 
 // Hero Section
-export async function getHeroSection() {
-    const response = await api.get("/hero-section");
-    return response.data;
-    // return HERO_FALLBACK;
-}
+export const getHeroSection = () =>
+    safeGet("/hero-section");
 
 // Counter Section
-export async function getCounterSection() {
-    const response = await api.get("/counter-section");
-    return response.data;
-    // return COUNTER_FALLBACK;
-}
+export const getCounterSection = () =>
+    safeGet("/counter-section");
 
 // Experience Overview
-export async function getExpertiesOverview() {
-    const response = await api.get("/experties-overview");
-    return response.data;
-    // return EXPERTIES_OVERVIEW_FALLBACK;
-}
+export const getExpertiesOverview = () =>
+    safeGet("/experties-overview");
 
 // Features
-export async function getFeatures() {
-    const response = await api.get("/features");
-    return response.data;
-    // return FEATURES_FALLBACK;
-}
+export const getFeatures = () =>
+    safeGet("/features");
 
-// Life Overview
-export async function getClientExperience() {
-    const response = await api.get("/life-overview");
-    return response.data;
-    // return  CLIENT_EXRERIENCE_FALLBACK;
-}
+// Client Experience
+export const getClientExperience = () =>
+    safeGet("/life-overview");
 
 // Opportunities
-export async function getOpportunities() {
-    const response = await api.get("/opportunities");
-    return response.data;
-    // return OPPORTUNITIES_FALLBACK;
-}
+export const getOpportunities = () =>
+    safeGet("/opportunities");
 
 // Vision
-export async function getVision() {
-    const response = await api.get("/vision");
-    return response.data;
-    // return VISION_FALLBACK;
-}
+export const getVision = () =>
+    safeGet("/vision");
 
 // Practice Areas
-export async function getPracticeAreas() {
-    const response = await api.get("/practice-areas");
-    return response.data;
-    // return PRACTICE_AREAS_FALLBACK;
-}
+export const getPracticeAreas = () =>
+    safeGet("/practice-areas");
 
 // Insights
-export async function getInsights() {
-    const response = await api.get("/insights");
-    return response.data;
-    // return INSIGHTS_FALLBACK;
-}
+export const getInsights = () =>
+    safeGet("/insights");
 
-// Voice Section
-export async function getVoice() {
-    const response = await api.get("/voice");
-    return response.data;
-    // return VOICE_FALLBACK;
-}
+// Voice
+export const getVoice = () =>
+    safeGet("/voice");
 
 // Powered By Features
-export async function getPoweredByFeatures() {
-    const response = await api.get("/powered-by-features");
-    return response.data;
-    // return FEATURES_POWEREDBY_FALLBACK;
-}
+export const getPoweredByFeatures = () =>
+    safeGet("/powered-by-features");
 
 // Personalized Consultation
-export async function getPersonalizedConsultation() {
-    const response = await api.get("/personalized-consultation");
-    return response.data;
-    // return PERSONALIZED_CONSULTATION_FALLBACK;
-}
+export const getPersonalizedConsultation = () =>
+    safeGet("/personalized-consultation");
 
-// Services Section
-export async function getServices() {   
-    const response = await api.get("/services");
-    return response.data;
-    // return SERVICES_FALLBACK;
-}
+// Services
+export const getServices = () =>
+    safeGet("/services");
 
 // Footer
-export async function getFooter() {
-    const response = await api.get("/footer");
-    return response.data;
-    // return FOOTER_FALLBACK;
-}
+export const getFooter = () =>
+    safeGet("/footer");
