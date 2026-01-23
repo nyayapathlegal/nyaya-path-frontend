@@ -175,8 +175,7 @@ export function Header() {
                         {/* Desktop Login */}
                         <div className="hidden lg:flex items-center space-x-4">
                             <Link
-                                // href="/login"
-                                href={"/"}
+                                href="/login"
                                 className="relative px-7 py-3 text-sm font-bold bg-white rounded-xl transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden group"
                             >
                                 <span className="relative z-10">Login</span>
@@ -247,8 +246,7 @@ export function Header() {
                             ))}
 
                             <Link
-                                // href="/login"
-                                href="/"
+                                href="/login"
                                 onClick={() => setIsMobileMenuVisible(false)}
                                 className="block w-full text-center px-7 py-4 mt-6 text-sm font-bold bg-white text-black rounded-xl hover:bg-blue-50 transition-all duration-200 shadow-lg active:scale-95"
                             >

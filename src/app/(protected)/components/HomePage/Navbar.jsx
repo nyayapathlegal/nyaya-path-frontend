@@ -97,13 +97,14 @@ const NavbarCMS = () => {
         });
     };
 
-    const updatePage = (navIndex, subIndex, pageIndex, key, value) => {
+    const updatePage = (navIndex, subIndex, pageIndex, updater) => {
         setNavbarItems(prev => {
             const copy = structuredClone(prev);
-            copy[navIndex].children[subIndex].children[pageIndex][key] = value;
+            updater(copy[navIndex].children[subIndex].children[pageIndex]);
             return copy;
         });
     };
+
 
     const updatePageTitle = (navIndex, subIndex, pageIndex, title) => {
         setNavbarItems(prev => {
@@ -156,24 +157,78 @@ const NavbarCMS = () => {
 
 
     /* ---------- validation ---------- */
-    const isValid = () =>
-        navbarItems.every(nav =>
-            nav.children?.length > 0 &&
-            nav.children.every(sub =>
-                sub.title?.trim() &&
-                sub.children?.length > 0 &&
-                sub.children.every(
-                    page =>
-                        page.title?.trim() &&
-                        page.slug?.trim()
-                )
-            )
-        );
+const validateNavbar = () => {
+    for (let navIndex = 0; navIndex < navbarItems.length; navIndex++) {
+        const nav = navbarItems[navIndex];
+
+        for (let subIndex = 0; subIndex < (nav.children || []).length; subIndex++) {
+            const sub = nav.children[subIndex];
+
+            const subName = sub.title || `Subcategory ${subIndex + 1}`;
+
+            if (!sub.title?.trim()) {
+                toast.error(`Subcategory title is empty (Menu: ${nav.title})`);
+                return false;
+            }
+
+            for (let pageIndex = 0; pageIndex < (sub.children || []).length; pageIndex++) {
+                const page = sub.children[pageIndex];
+                const hero = page.page?.hero || {};
+                const section = page.page?.section || {};
+
+                const pageName = page.title || `Page ${pageIndex + 1}`;
+
+                if (!page.title?.trim()) {
+                    toast.error(`Page title is empty (Subcategory: ${subName})`);
+                    return false;
+                }
+
+                if (!page.slug?.trim()) {
+                    toast.error(`Page URL is empty (Page: ${pageName})`);
+                    return false;
+                }
+
+                if (!hero.heading?.trim()) {
+                    toast.error(`Hero Heading is empty (Page: ${pageName}, Subcategory: ${subName})`);
+                    return false;
+                }
+
+                if (!hero.subheading?.trim()) {
+                    toast.error(`Hero Subheading is empty (Page: ${pageName}, Subcategory: ${subName})`);
+                    return false;
+                }
+
+                if (!hero.description?.trim()) {
+                    toast.error(`Hero Description is empty (Page: ${pageName}, Subcategory: ${subName})`);
+                    return false;
+                }
+
+                if (!hero.image?.trim()) {
+                    toast.error(`Hero Image URL is empty (Page: ${pageName}, Subcategory: ${subName})`);
+                    return false;
+                }
+
+                if (!section.title?.trim()) {
+                    toast.error(`Section Title is empty (Page: ${pageName}, Subcategory: ${subName})`);
+                    return false;
+                }
+
+                if (!section.content?.trim()) {
+                    toast.error(`Section Content is empty (Page: ${pageName}, Subcategory: ${subName})`);
+                    return false;
+                }
+            }
+        }
+    }
+
+    return true; // ✅ valid
+};
+
 
 
     /* ---------- save ---------- */
     const saveNavItems = async () => {
-        if (!isValid()) return toast.error("All fields are required");
+        if (!validateNavbar()) return;
         if (hasDuplicateSlugs(navbarItems)) return toast.error("Duplicate page URLs found");
 
         try {
@@ -281,38 +336,67 @@ const NavbarCMS = () => {
                                                                 <CMSLabel labelText="Hero Heading" />
                                                                 <CMSInput
                                                                     value={page.page.hero.heading}
-                                                                    onChange={e => updatePage(navIndex, subIndex, pageIndex, "page.hero.heading", e.target.value)}
+                                                                    onChange={e =>
+                                                                        updatePage(navIndex, subIndex, pageIndex, page => {
+                                                                            page.page.hero.heading = e.target.value;
+                                                                        })
+                                                                    }
                                                                 />
+
 
                                                                 <CMSLabel labelText="Hero Subheading" />
                                                                 <CMSInput
                                                                     value={page.page.hero.subheading}
-                                                                    onChange={e => updatePage(navIndex, subIndex, pageIndex, "page.hero.subheading", e.target.value)}
+                                                                    onChange={e =>
+                                                                        updatePage(navIndex, subIndex, pageIndex, page => {
+                                                                            page.page.hero.subheading = e.target.value;
+                                                                        })
+                                                                    }
                                                                 />
+
 
                                                                 <CMSLabel labelText="Hero Description" />
                                                                 <CMSTextarea
                                                                     value={page.page.hero.description}
-                                                                    onChange={e => updatePage(navIndex, subIndex, pageIndex, "page.hero.description", e.target.value)}
+                                                                    onChange={e =>
+                                                                        updatePage(navIndex, subIndex, pageIndex, page => {
+                                                                            page.page.hero.description = e.target.value;
+                                                                        })
+                                                                    }
                                                                 />
+
 
                                                                 <CMSLabel labelText="Hero Image URL" />
                                                                 <CMSInput
                                                                     value={page.page.hero.image}
-                                                                    onChange={e => updatePage(navIndex, subIndex, pageIndex, "page.hero.image", e.target.value)}
+                                                                    onChange={e =>
+                                                                        updatePage(navIndex, subIndex, pageIndex, page => {
+                                                                            page.page.hero.image = e.target.value;
+                                                                        })
+                                                                    }
                                                                 />
 
                                                                 <CMSLabel labelText="Section Title" />
                                                                 <CMSInput
                                                                     value={page.page.section.title}
-                                                                    onChange={e => updatePage(navIndex, subIndex, pageIndex, "page.section.title", e.target.value)}
+                                                                    onChange={e =>
+                                                                        updatePage(navIndex, subIndex, pageIndex, page => {
+                                                                            page.page.section.title = e.target.value;
+                                                                        })
+                                                                    }
                                                                 />
+
 
                                                                 <CMSLabel labelText="Section Content" />
                                                                 <CMSTextarea
                                                                     value={page.page.section.content}
-                                                                    onChange={e => updatePage(navIndex, subIndex, pageIndex, "page.section.content", e.target.value)}
+                                                                    onChange={e =>
+                                                                        updatePage(navIndex, subIndex, pageIndex, page => {
+                                                                            page.page.section.content = e.target.value;
+                                                                        })
+                                                                    }
                                                                 />
+
                                                             </div>
                                                         </CMSDetailsWrapper>
                                                     </CMSCard>

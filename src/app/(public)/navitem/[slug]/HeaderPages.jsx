@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { MEDIA_FALLBACK } from "@/config/fallbacks/mediaFallback";
+import { useEffect, useState } from "react";
 const HeaderPages = ({ page }) => {
   const { hero, section } = page;
 
@@ -18,7 +19,23 @@ const HeaderPages = ({ page }) => {
     }),
   };
 
-
+  
+    const [imageUrl, setImageUrl] = useState(MEDIA_FALLBACK.images.headerPageImage);
+  
+  
+          useEffect(() => {
+              const fetchData = async () => {
+                  try {
+                      const res = await getMediaSection();
+                      setImageUrl(res?.images?.homeRightImage);
+                  } 
+                  catch (err) {
+                      console.error(err);
+                      setImageUrl(MEDIA_FALLBACK.images.homeRightImage);
+                  }   
+              };
+              fetchData();
+          }, []);
 
   return (
     <div className="w-full">
@@ -26,8 +43,7 @@ const HeaderPages = ({ page }) => {
       <section
         className="relative h-screen flex items-center bg-cover bg-center pt-10"
         style={{ 
-          // backgroundImage: `url(${hero.image})` 
-           backgroundImage: `url(${MEDIA_FALLBACK.images.headerPageImage})`,
+          backgroundImage: `url(${imageUrl})`, 
         }}
       >
         {/* Overlay */}

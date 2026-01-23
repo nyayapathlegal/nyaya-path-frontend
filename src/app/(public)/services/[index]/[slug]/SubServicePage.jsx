@@ -24,6 +24,23 @@ const itemVariants = {
 };
 
 export default function SubServicePage({ data }) {
+
+      const [imageUrl, setImageUrl] = useState(MEDIA_FALLBACK.images.serviceImage);
+
+        useEffect(() => {
+            const fetchData = async () => {
+                try {
+                    const res = await getMediaSection();
+                    setImageUrl(res?.images?.homeRightImage);
+                } 
+                catch (err) {
+                    console.error(err);
+                    setImageUrl(MEDIA_FALLBACK.images.homeRightImage);
+                }   
+            };
+            fetchData();
+        }, []);
+
     const { service, sub } = data;
     // console.log(service.image);
     return (
@@ -32,8 +49,7 @@ export default function SubServicePage({ data }) {
             <div
                 className="relative h-[45vh] flex items-center justify-center"
                 style={{
-                    // backgroundImage: `url(${service.image})`,
-                    backgroundImage: `url(${MEDIA_FALLBACK.images.serviceImage})`,
+                    backgroundImage: `url(${imageUrl})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                 }}
