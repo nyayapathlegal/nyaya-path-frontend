@@ -13,25 +13,26 @@ export default function AppBootstrap({ children }) {
         const bootstrapAuth = async () => {
             try {
                 // Backend validates authToken cookie
-                const data = await validateTokenAPI(); 
+                // const data = await validateTokenAPI(); 
                 // console.log("Bootstrap auth data:", data);
                 // API should read HttpOnly cookie internally
 
-                if (!data?.user) {
-                    dispatch(logout());
-                    setReady(true);
-                    return;
-                }
+                // if (!data?.user) {
+                //     dispatch(logout());
+                //     setReady(true);
+                //     return;
+                // }
 
-                dispatch(
-                    login({
-                        id: data.user.id,
-                        username: data.user.username,
-                        email: data.user.email,
-                        fullName: data.user.fullName,
-                        role: data.user.role,
-                    })
-                );
+                // dispatch(
+                //     login({
+                //         id: data.user.id,
+                //         username: data.user.username,
+                //         email: data.user.email,
+                //         fullName: data.user.fullName,
+                //         role: data.user.role,
+                //     })
+                // );
+                dispatch(logout());
             } catch {
                 dispatch(logout());
             } finally {
