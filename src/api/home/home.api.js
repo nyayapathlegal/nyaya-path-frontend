@@ -1,76 +1,177 @@
 import api from "../../utils/api";
 
-async function safeGet(url) {
-    try {
-        const response = await api.get(url);
-        return response.data;
-    } 
-    catch (err) {
-        console.error(`API error [${url}]:`, err);
-        return err;
-    }
+// Media Section
+export async function getMediaSection() {
+  try {
+    const response = await api.get("/media-items");
+    return response.data;
+  } catch (err) {
+    console.error("getMediaSection error:", err);
+    return err;
+  }
 }
 
-// Media Section
-export const getMediaSection = () =>
-    safeGet("/media-items");
-
 // Navigation
-export const getNavItems = () =>
-    safeGet("/nav-items");
+export async function getNavItems() {
+  try {
+    const response = await api.get("/nav-items");
+    return response.data;
+  } catch (err) {
+    console.error("getNavItems error:", err);
+    return err;
+  }
+}
 
 // Hero Section
-export const getHeroSection = () =>
-    safeGet("/hero-section");
+export async function getHeroSection() {
+  try {
+    const response = await api.get("/hero-section");
+    return response.data;
+  } catch (err) {
+    console.error("getHeroSection error:", err);
+    return err;
+  }
+}
 
 // Counter Section
-export const getCounterSection = () =>
-    safeGet("/counter-section");
+export async function getCounterSection() {
+  try {
+    const response = await api.get("/counter-section");
+    return response.data;
+  } catch (err) {
+    console.error("getCounterSection error:", err);
+    return err;
+  }
+}
 
 // Experience Overview
-export const getExpertiesOverview = () =>
-    safeGet("/experties-overview");
+export async function getExpertiesOverview() {
+  try {
+    const response = await api.get("/experties-overview");
+    return response.data;
+  } catch (err) {
+    console.error("getExpertiesOverview error:", err);
+    return err;
+  }
+}
 
 // Features
-export const getFeatures = () =>
-    safeGet("/features");
+export async function getFeatures() {
+  try {
+    const response = await api.get("/features");
+    return response.data;
+  } catch (err) {
+    console.error("getFeatures error:", err);
+    return err;
+  }
+}
 
 // Client Experience
-export const getClientExperience = () =>
-    safeGet("/life-overview");
+export async function getClientExperience() {
+  try {
+    const response = await api.get("/life-overview");
+    return response.data;
+  } catch (err) {
+    console.error("getClientExperience error:", err);
+    return err;
+  }
+}
 
 // Opportunities
-export const getOpportunities = () =>
-    safeGet("/opportunities");
+export async function getOpportunities() {
+  try {
+    const response = await api.get("/opportunities");
+    return response.data;
+  } catch (err) {
+    console.error("getOpportunities error:", err);
+    return err;
+  }
+}
 
 // Vision
-export const getVision = () =>
-    safeGet("/vision");
+export async function getVision() {
+  try {
+    const response = await api.get("/vision");
+    return response.data;
+  } catch (err) {
+    console.error("getVision error:", err);
+    return err;
+  }
+}
 
 // Practice Areas
-export const getPracticeAreas = () =>
-    safeGet("/practice-areas");
+export async function getPracticeAreas() {
+  try {
+    const response = await api.get("/practice-areas");
+    return response.data;
+  } catch (err) {
+    console.error("getPracticeAreas error:", err);
+    return err;
+  }
+}
 
 // Insights
-export const getInsights = () =>
-    safeGet("/insights");
+export async function getInsights() {
+  try {
+    const response = await api.get("/insights");
+    return response.data;
+  } catch (err) {
+    console.error("getInsights error:", err);
+    return err;
+  }
+}
 
 // Voice
-export const getVoice = () =>
-    safeGet("/voice");
+export async function getVoice() {
+  try {
+    const response = await api.get("/voice");
+    return response.data;
+  } catch (err) {
+    console.error("getVoice error:", err);
+    return err;
+  }
+}
 
 // Powered By Features
-export const getPoweredByFeatures = () =>
-    safeGet("/powered-by-features");
+export async function getPoweredByFeatures() {
+  try {
+    const response = await api.get("/powered-by-features");
+    return response.data;
+  } catch (err) {
+    console.error("getPoweredByFeatures error:", err);
+    return err;
+  }
+}
 
 // Personalized Consultation
-export const getPersonalizedConsultation = () =>
-    safeGet("/personalized-consultation");
+export async function getPersonalizedConsultation() {
+  try {
+    const response = await api.get("/personalized-consultation");
+    return response.data;
+  } catch (err) {
+    console.error("getPersonalizedConsultation error:", err);
+    return err;
+  }
+}
 
 // Services
-export const getServices = () =>
-    safeGet("/services");
+export async function getServices() {
+  try {
+    const response = await api.get("/services");
+    return response.data;
+  } catch (err) {
+    console.error("getServices error:", err);
+    return err;
+  }
+}
 
 // Footer
-export const getFooter = () =>
-    safeGet("/footer");
+export async function getFooter() {
+  try {
+    const response = await api.get("/footer");
+    return response.data;
+  } catch (err) {
+    console.error("getFooter error:", err);
+    return err;
+  }
+}
