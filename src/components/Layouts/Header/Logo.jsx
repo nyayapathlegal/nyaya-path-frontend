@@ -29,7 +29,8 @@ const Logo = () => {
             className="flex items-center justify-start overflow-hidden"
         >
             <Image
-                src={logoUrl}
+                // src={logoUrl}
+                src={MEDIA_FALLBACK.images.logo}
                 alt="logo"
                 width={55}
                 height={55}

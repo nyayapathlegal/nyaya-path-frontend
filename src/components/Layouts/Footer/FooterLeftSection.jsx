@@ -44,7 +44,8 @@ const FooterLeftSection = ({ footerText }) => {
                 className="w-20 flex items-center justify-start"
             >
                 <Image
-                    src={logoUrl}
+                    // src={logoUrl}
+                    src={MEDIA_FALLBACK.images.logo}
                     alt="logo"
                     width={160}
                     height={160}
