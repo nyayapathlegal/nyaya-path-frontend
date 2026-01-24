@@ -79,7 +79,7 @@ export function Header() {
 
             {/* Desktop Navigation */}
             <div
-              className="hidden lg:flex items-center space-x-2"
+              className="hidden xl:flex items-center space-x-2"
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
@@ -179,7 +179,7 @@ export function Header() {
             </div>
 
             {/* Desktop Login */}
-            <div className="hidden lg:flex items-center space-x-4">
+            <div className="hidden xl:flex items-center space-x-4">
               <Link
                 href="/login"
                 className="relative px-7 py-3 text-sm font-bold bg-white rounded-xl transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl overflow-hidden group"
@@ -194,7 +194,7 @@ export function Header() {
               onClick={() =>
                 setIsMobileMenuVisible(!isMobileMenuVisible)
               }
-              className="lg:hidden p-2.5 rounded-xl text-black active:scale-95"
+              className="xl:hidden p-2.5 rounded-xl text-black active:scale-95"
             >
               {isMobileMenuVisible ? (
                 <X className="h-6 w-6" />
@@ -207,7 +207,7 @@ export function Header() {
 
         {/* Mobile Menu */}
         {isMobileMenuVisible && (
-          <div className="lg:hidden backdrop-blur-xl border-t border-white/10 animate-in slide-in-from-top duration-200">
+          <div className="xl:hidden backdrop-blur-xl border-t border-white/10 animate-in slide-in-from-top duration-200">
             <div className="max-h-[calc(100vh-4rem)] overflow-y-auto px-4 py-6 space-y-3">
               {navItems.map((nav) => (
                 <div key={nav.id} className="space-y-2">
