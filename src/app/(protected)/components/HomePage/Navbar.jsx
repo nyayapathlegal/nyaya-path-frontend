@@ -27,7 +27,6 @@ const generateSlug = text =>
         .replace(/-+/g, "-");
 
 const createEmptyPage = () => ({
-    id: "",
     slug: "",
     title: "",
     page: {
@@ -46,7 +45,6 @@ const createEmptyPage = () => ({
 
 
 const createEmptySubcategory = () => ({
-    id: "",
     title: "",
     children: [createEmptyPage()], // Automatically add one child page
 });
@@ -251,178 +249,182 @@ const validateNavbar = () => {
         <>
             {/* Tabs */}
             <div className="flex gap-4 border-b border-white/10 overflow-x-auto pb-2">
-                {navbarItems.map(tab => (
-                    <CMSTopButton
-                        key={tab.id}
-                        label={tab.title}
-                        active={activeTab === tab.id}
-                        onClick={() => setActiveTab(tab.id)}
-                    />
-                ))}
+                {
+                    navbarItems.map( (tab) => (
+                        <CMSTopButton
+                            key={tab.id}
+                            label={tab.title}
+                            active={activeTab === tab.id}
+                            onClick={() => setActiveTab(tab.id)}
+                        />
+                    ))
+                }
             </div>
 
             {/* Content */}
             <div className="flex flex-col gap-y-4">
-                {navbarItems.map((nav, navIndex) =>
-                    nav.id !== activeTab ? null : (
-                        <CMSSection key={nav.id} title={`Subcategories under ${nav.title}`}>
-                            {/* Subcategories */}
-                            {nav.children?.map((sub, subIndex) => (
-                                <CMSCard key={`${nav.id}-${subIndex}`} className="relative border border-white/20">
-                                    <CMSDetailsWrapper summary={sub.title || "New Subcategory"} defaultOpen={false}>
-                                        {nav.children.length > 1 && (
-                                            <button
-                                                onClick={() => removeSubcategory(navIndex, subIndex)}
-                                                className="absolute top-6 right-6 text-red-500 text-sm"
-                                            >
-                                                ✕ Remove
-                                            </button>
-                                        )}
+                {
+                    navbarItems.map( (nav, navIndex) =>
+                        (nav.id === activeTab) ? (
+                            <CMSSection key={nav.id} title={`Subcategories under ${nav.title}`}>
+                                {/* Subcategories */}
+                                {nav.children?.map((sub, subIndex) => (
+                                    <CMSCard key={`${nav.id}-${subIndex}`} className="relative border border-white/20">
+                                        <CMSDetailsWrapper summary={sub.title || "New Subcategory"} defaultOpen={false}>
+                                            {nav.children.length > 1 && (
+                                                <button
+                                                    onClick={() => removeSubcategory(navIndex, subIndex)}
+                                                    className="absolute top-6 right-6 text-red-500 text-sm"
+                                                >
+                                                    ✕ Remove
+                                                </button>
+                                            )}
 
-                                        <div className="space-y-4">
-                                            {/* Subcategory Info */}
-                                            <div className="pb-4 border-b border-white/10">
-                                                <h4 className="text-sm font-semibold text-white/70 mb-3">Subcategory Details</h4>
-                                                <div className="space-y-3">
-                                                    <div>
-                                                        <CMSLabel labelText="Subcategory Title" />
-                                                        <CMSInput
-                                                            value={sub.title}
-                                                            onChange={e => updateSubcategory(navIndex, subIndex, "title", e.target.value)}
-                                                        />
+                                            <div className="space-y-4">
+                                                {/* Subcategory Info */}
+                                                <div className="pb-4 border-b border-white/10">
+                                                    <h4 className="text-sm font-semibold text-white/70 mb-3">Subcategory Details</h4>
+                                                    <div className="space-y-3">
+                                                        <div>
+                                                            <CMSLabel labelText="Subcategory Title" />
+                                                            <CMSInput
+                                                                value={sub.title}
+                                                                onChange={e => updateSubcategory(navIndex, subIndex, "title", e.target.value)}
+                                                            />
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            {/* Pages under Subcategory */}
-                                            <div>
-                                                <h4 className="text-sm font-semibold text-white/70 mb-3">Pages</h4>
+                                                {/* Pages under Subcategory */}
+                                                <div>
+                                                    <h4 className="text-sm font-semibold text-white/70 mb-3">Pages</h4>
 
-                                                {sub.children?.map((page, pageIndex) => (
-                                                    <CMSCard
-                                                        key={`${nav.id}-${subIndex}-${pageIndex}`}
-                                                        className="relative mb-3 bg-white/5 border border-white/10"
-                                                    >
-                                                        <CMSDetailsWrapper
-                                                            summary={page.title || "New Page"}
-                                                            defaultOpen={false}
+                                                    {sub.children?.map((page, pageIndex) => (
+                                                        <CMSCard
+                                                            key={`${nav.id}-${subIndex}-${pageIndex}`}
+                                                            className="relative mb-3 bg-white/5 border border-white/10"
                                                         >
-                                                            {sub.children.length > 1 && (
-                                                                <button
-                                                                    onClick={() => removePage(navIndex, subIndex, pageIndex)}
-                                                                    className="absolute top-6 right-6 text-red-500 text-sm"
-                                                                >
-                                                                    ✕ Remove
-                                                                </button>
-                                                            )}
+                                                            <CMSDetailsWrapper
+                                                                summary={page.title || "New Page"}
+                                                                defaultOpen={false}
+                                                            >
+                                                                {sub.children.length > 1 && (
+                                                                    <button
+                                                                        onClick={() => removePage(navIndex, subIndex, pageIndex)}
+                                                                        className="absolute top-6 right-6 text-red-500 text-sm"
+                                                                    >
+                                                                        ✕ Remove
+                                                                    </button>
+                                                                )}
 
-                                                            <div className="space-y-3">
-                                                                <div>
-                                                                    <CMSLabel labelText="Page URL" />
-                                                                    <CMSInput value={page.slug} readOnly />
-                                                                </div>
+                                                                <div className="space-y-3">
+                                                                    <div>
+                                                                        <CMSLabel labelText="Page URL" />
+                                                                        <CMSInput value={page.slug} readOnly />
+                                                                    </div>
 
-                                                                <div>
-                                                                    <CMSLabel labelText="Title" />
+                                                                    <div>
+                                                                        <CMSLabel labelText="Title" />
+                                                                        <CMSInput
+                                                                            value={page.title}
+                                                                            onChange={e => updatePageTitle(navIndex, subIndex, pageIndex, e.target.value)}
+                                                                        />
+                                                                    </div>
+
+
+
+
+                                                                    <CMSLabel labelText="Hero Heading" />
                                                                     <CMSInput
-                                                                        value={page.title}
-                                                                        onChange={e => updatePageTitle(navIndex, subIndex, pageIndex, e.target.value)}
+                                                                        value={page.page.hero.heading}
+                                                                        onChange={e =>
+                                                                            updatePage(navIndex, subIndex, pageIndex, page => {
+                                                                                page.page.hero.heading = e.target.value;
+                                                                            })
+                                                                        }
                                                                     />
+
+
+                                                                    <CMSLabel labelText="Hero Subheading" />
+                                                                    <CMSInput
+                                                                        value={page.page.hero.subheading}
+                                                                        onChange={e =>
+                                                                            updatePage(navIndex, subIndex, pageIndex, page => {
+                                                                                page.page.hero.subheading = e.target.value;
+                                                                            })
+                                                                        }
+                                                                    />
+
+
+                                                                    <CMSLabel labelText="Hero Description" />
+                                                                    <CMSTextarea
+                                                                        value={page.page.hero.description}
+                                                                        onChange={e =>
+                                                                            updatePage(navIndex, subIndex, pageIndex, page => {
+                                                                                page.page.hero.description = e.target.value;
+                                                                            })
+                                                                        }
+                                                                    />
+
+
+                                                                    <CMSLabel labelText="Hero Image URL" />
+                                                                    <CMSInput
+                                                                        value={page.page.hero.image}
+                                                                        onChange={e =>
+                                                                            updatePage(navIndex, subIndex, pageIndex, page => {
+                                                                                page.page.hero.image = e.target.value;
+                                                                            })
+                                                                        }
+                                                                    />
+
+                                                                    <CMSLabel labelText="Section Title" />
+                                                                    <CMSInput
+                                                                        value={page.page.section.title}
+                                                                        onChange={e =>
+                                                                            updatePage(navIndex, subIndex, pageIndex, page => {
+                                                                                page.page.section.title = e.target.value;
+                                                                            })
+                                                                        }
+                                                                    />
+
+
+                                                                    <CMSLabel labelText="Section Content" />
+                                                                    <CMSTextarea
+                                                                        value={page.page.section.content}
+                                                                        onChange={e =>
+                                                                            updatePage(navIndex, subIndex, pageIndex, page => {
+                                                                                page.page.section.content = e.target.value;
+                                                                            })
+                                                                        }
+                                                                    />
+
                                                                 </div>
+                                                            </CMSDetailsWrapper>
+                                                        </CMSCard>
+                                                    ))}
 
-
-
-
-                                                                <CMSLabel labelText="Hero Heading" />
-                                                                <CMSInput
-                                                                    value={page.page.hero.heading}
-                                                                    onChange={e =>
-                                                                        updatePage(navIndex, subIndex, pageIndex, page => {
-                                                                            page.page.hero.heading = e.target.value;
-                                                                        })
-                                                                    }
-                                                                />
-
-
-                                                                <CMSLabel labelText="Hero Subheading" />
-                                                                <CMSInput
-                                                                    value={page.page.hero.subheading}
-                                                                    onChange={e =>
-                                                                        updatePage(navIndex, subIndex, pageIndex, page => {
-                                                                            page.page.hero.subheading = e.target.value;
-                                                                        })
-                                                                    }
-                                                                />
-
-
-                                                                <CMSLabel labelText="Hero Description" />
-                                                                <CMSTextarea
-                                                                    value={page.page.hero.description}
-                                                                    onChange={e =>
-                                                                        updatePage(navIndex, subIndex, pageIndex, page => {
-                                                                            page.page.hero.description = e.target.value;
-                                                                        })
-                                                                    }
-                                                                />
-
-
-                                                                <CMSLabel labelText="Hero Image URL" />
-                                                                <CMSInput
-                                                                    value={page.page.hero.image}
-                                                                    onChange={e =>
-                                                                        updatePage(navIndex, subIndex, pageIndex, page => {
-                                                                            page.page.hero.image = e.target.value;
-                                                                        })
-                                                                    }
-                                                                />
-
-                                                                <CMSLabel labelText="Section Title" />
-                                                                <CMSInput
-                                                                    value={page.page.section.title}
-                                                                    onChange={e =>
-                                                                        updatePage(navIndex, subIndex, pageIndex, page => {
-                                                                            page.page.section.title = e.target.value;
-                                                                        })
-                                                                    }
-                                                                />
-
-
-                                                                <CMSLabel labelText="Section Content" />
-                                                                <CMSTextarea
-                                                                    value={page.page.section.content}
-                                                                    onChange={e =>
-                                                                        updatePage(navIndex, subIndex, pageIndex, page => {
-                                                                            page.page.section.content = e.target.value;
-                                                                        })
-                                                                    }
-                                                                />
-
-                                                            </div>
-                                                        </CMSDetailsWrapper>
-                                                    </CMSCard>
-                                                ))}
-
-                                                <button
-                                                    onClick={() => addPage(navIndex, subIndex)}
-                                                    className="mt-2 text-sm text-blue-400"
-                                                >
-                                                    + Add Page
-                                                </button>
+                                                    <button
+                                                        onClick={() => addPage(navIndex, subIndex)}
+                                                        className="mt-2 text-sm text-blue-400"
+                                                    >
+                                                        + Add Page
+                                                    </button>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </CMSDetailsWrapper>
-                                </CMSCard>
-                            ))}
+                                        </CMSDetailsWrapper>
+                                    </CMSCard>
+                                ))}
 
-                            <button
-                                onClick={() => addSubcategory(navIndex)}
-                                className="mt-4 text-sm text-green-400 font-semibold"
-                            >
-                                + Add Subcategory
-                            </button>
-                        </CMSSection>
+                                <button
+                                    onClick={() => addSubcategory(navIndex)}
+                                    className="mt-4 text-sm text-green-400 font-semibold"
+                                >
+                                    + Add Subcategory
+                                </button>
+                            </CMSSection>
+                        ) : null
                     )
-                )}
+                }
 
                 <CMSSubmitButton
                     onClick={saveNavItems}
