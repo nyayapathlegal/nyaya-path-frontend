@@ -1,5 +1,7 @@
+import { getMediaSection } from "@/api/home/home.api";
 import { MEDIA_FALLBACK } from "@/config/fallbacks/mediaFallback";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const listVariants = {
     hidden: { opacity: 0 },
