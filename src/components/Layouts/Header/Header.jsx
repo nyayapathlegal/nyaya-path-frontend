@@ -17,8 +17,12 @@ export function Header() {
     // mobile
     const [activeMobileNav, setActiveMobileNav] = useState(null);
     const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(false);
+    const [activeCategory, setActiveCategory] = useState(null);
+
 
     const navbarRef = useRef(null);
+    const mobileMenuRef = useRef(null);
+
     const megaMenuRef = useRef(null);
 
     const openTimeoutRef = useRef(null);
@@ -49,7 +53,8 @@ export function Header() {
         const handler = (e) => {
             if (
                 !navbarRef.current?.contains(e.target) &&
-                !megaMenuRef.current?.contains(e.target)
+                !megaMenuRef.current?.contains(e.target) &&
+                !mobileMenuRef.current?.contains(e.target)
             ) {
                 clearAllTimeouts();
                 setActiveDesktopNav(null);
@@ -203,7 +208,7 @@ export function Header() {
 
             {/* ================= MOBILE MENU ================= */}
             {isMobileMenuVisible && (
-                <div className="xl:hidden border-t bg-white">
+                <div ref={mobileMenuRef} className="xl:hidden border-t bg-white">
                     <div className="max-h-[calc(100vh-4rem)] overflow-y-auto p-4">
                         {
                             navItems.map((nav) => (
@@ -227,20 +232,50 @@ export function Header() {
 
                                     {
                                         nav.children && activeMobileNav === nav.id && (
-                                            <div className="ml-4">
+                                            <div className="pl-4 border-l border-gray-200">
+
                                                 {nav.children.map((cat) => (
                                                     <div key={cat.title}>
-                                                        <p className="font-semibold py-2">{cat.title}</p>
-                                                        {cat.children?.map((item) => (
-                                                            <Link
-                                                                key={item.slug}
-                                                                href={`/navitem/${item.slug}`}
-                                                                onClick={() => setIsMobileMenuVisible(false)}
-                                                                className="block px-4 py-2 text-sm"
-                                                            >
-                                                                {item.title}
-                                                            </Link>
-                                                        ))}
+                                                        <button
+                                                            onClick={() =>
+                                                                setActiveCategory(
+                                                                    activeCategory === cat.title ? null : cat.title
+                                                                )
+                                                            }
+                                                            className="
+  w-full flex justify-between items-center
+  pl-4 py-2
+  text-sm font-semibold text-gray-800
+"
+
+                                                        >
+                                                            {cat.title}
+                                                            {cat.children && (
+                                                                <ChevronDown
+                                                                    className={`h-4 w-4 transition ${activeCategory === cat.title ? "rotate-180" : ""
+                                                                        }`}
+                                                                />
+                                                            )}
+                                                        </button>
+
+
+                                                        {activeCategory === cat.title &&
+                                                            cat.children?.map((item) => (
+                                                                <Link
+                                                                    key={item.slug}
+                                                                    href={`/navitem/${item.slug}`}
+                                                                    onClick={() => setIsMobileMenuVisible(false)}
+                                                                    className="
+  block pl-8 py-1.5
+  text-sm text-gray-600
+  before:content-['–'] before:mr-2
+"
+
+
+                                                                >
+                                                                    {item.title}
+                                                                </Link>
+                                                            ))}
                                                     </div>
                                                 ))}
                                             </div>
