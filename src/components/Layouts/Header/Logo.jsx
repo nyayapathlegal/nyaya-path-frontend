@@ -26,14 +26,15 @@ const Logo = () => {
     return (
         <Link
             href="/"
-            className="flex items-center justify-start overflow-hidden"
+            className="overflow-hidden rounded-full"
         >
             <Image
                 // src={logoUrl}
                 src={MEDIA_FALLBACK.images.logo}
                 alt="logo"
-                width={55}
-                height={55}
+                width={75}
+                height={75}
+                className='rounded-full'
             />
 
         </Link>

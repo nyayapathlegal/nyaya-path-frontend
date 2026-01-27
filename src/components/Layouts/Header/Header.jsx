@@ -102,21 +102,24 @@ export function Header() {
                 className="sticky top-0 z-50 bg-white shadow-sm"
             >
                 <div className="max-w-screen-2xl mx-auto px-6">
-                    <div className="flex h-16 items-center justify-between">
+                    <div className="flex h-20 items-center justify-between">
+                        
                         <Logo />
 
                         {/* DESKTOP NAV */}
                         <div className="hidden xl:flex gap-6">
-                            {navItems.map((nav) => (
-                                <button
-                                    key={nav.id}
-                                    onMouseEnter={() => delayedOpen(nav)}
-                                    className="flex items-center gap-1 px-3 py-2 font-semibold hover:text-orange-600"
-                                >
-                                    {nav.title}
-                                    {nav.children && <ChevronDown className="h-4 w-4" />}
-                                </button>
-                            ))}
+                            {
+                                navItems.map((nav) => (
+                                    <button
+                                        key={nav.id}
+                                        onMouseEnter={() => delayedOpen(nav)}
+                                        className="flex items-center gap-1 px-3 py-2 font-semibold hover:text-orange-600"
+                                    >
+                                        {nav.title}
+                                        {nav.children && <ChevronDown className="h-4 w-4" />}
+                                    </button>
+                                ))
+                            }
                         </div>
 
                         {/* DESKTOP LOGIN */}
@@ -147,7 +150,7 @@ export function Header() {
                     onMouseEnter={clearAllTimeouts}
                     onMouseLeave={delayedClose}
                     className="
-                        fixed top-28 left-1/2 z-40
+                        fixed top-32 left-1/2 z-40
                         w-312.5 h-120
                         -translate-x-1/2
                         rounded-2xl bg-white

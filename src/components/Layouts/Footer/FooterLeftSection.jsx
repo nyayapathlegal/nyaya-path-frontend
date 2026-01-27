@@ -2,9 +2,8 @@
 
 import { getMediaSection } from "@/api/home/home.api";
 import { MEDIA_FALLBACK } from "@/config/fallbacks/mediaFallback";
-import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
+import Logo from "../Header/Logo";
 
 const FooterLeftSection = ({ footerText }) => {
 
@@ -39,20 +38,8 @@ const FooterLeftSection = ({ footerText }) => {
                 md:justify-between
             "
         >
-            <Link 
-                href="/"
-                className="w-20 flex items-center justify-start"
-            >
-                <Image
-                    // src={logoUrl}
-                    src={MEDIA_FALLBACK.images.logo}
-                    alt="logo"
-                    width={160}
-                    height={160}
-                />
-
-            </Link>
-
+            
+            <Logo />
 
             <p className="md:w-100 text-gray-600 text-sm sm:text-base leading-relaxed">
                 {footerText}
