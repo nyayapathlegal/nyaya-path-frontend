@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const BottomSection = ({companyName, socialMediaLinks}) => {
+const BottomSection = ({socialMediaLinks}) => {
     return (
         <div className="flex flex-row flex-wrap gap-4 justify-between items-center">
             
-            <p className="text-gray-500 text-sm"> © {new Date().getFullYear()} {companyName}. All rights reserved.</p>
+            <p className="text-gray-500 text-sm"> © {new Date().getFullYear()}. All rights reserved.</p>
 
             <div className="flex items-center gap-5">
                 {

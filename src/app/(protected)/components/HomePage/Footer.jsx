@@ -15,7 +15,6 @@ import { getFooter } from "../../../../api/home/home.api";
 import { setFooter } from "../../../../api/client/client.api";
 
 const FooterCMS = () => {
-
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
@@ -78,10 +77,14 @@ const FooterCMS = () => {
 
     /* Validation */
     const isValid = () => {
-
-        if (!data.companyName?.trim() || !data.footerText?.trim()) {
-            return false;
-        }
+        if (
+            !data.videoText?.trim() ||
+            !data.footerText?.trim() ||
+            !data.phoneNumber?.trim() ||
+            !data.gmail?.trim() ||
+            !data.address?.trim() ||
+            !data.branch?.trim()
+        ) return false;
 
         return data.socialMediaLinks.every(
             item =>
@@ -112,13 +115,8 @@ const FooterCMS = () => {
         }
     };
 
-    if (loading) {
-        return <HomePageLoader count={8} />;
-    }
-
-    if (!data) {
-        return <CMSFallback message="No footer found." />;
-    }
+    if (loading) return <HomePageLoader count={8} />;
+    if (!data) return <CMSFallback message="No footer found." />;
 
     return (
         <div className="flex flex-col gap-y-4">
@@ -129,8 +127,8 @@ const FooterCMS = () => {
                 <CMSCard>
                     <CMSLabel labelText="Company Name" />
                     <CMSInput
-                        value={data.companyName}
-                        onChange={e => updateField("companyName", e.target.value)}
+                        value={data.videoText}
+                        onChange={e => updateField("videoText", e.target.value)}
                     />
 
                     <CMSLabel labelText="Footer Description" />
@@ -138,58 +136,78 @@ const FooterCMS = () => {
                         value={data.footerText}
                         onChange={e => updateField("footerText", e.target.value)}
                     />
+
+                    <CMSLabel labelText="Phone Number" />
+                    <CMSInput
+                        value={data.phoneNumber}
+                        onChange={e => updateField("phoneNumber", e.target.value)}
+                    />
+
+                    <CMSLabel labelText="Gmail / Email" />
+                    <CMSInput
+                        value={data.gmail}
+                        onChange={e => updateField("gmail", e.target.value)}
+                    />
+
+                    <CMSLabel labelText="Address" />
+                    <CMSTextarea
+                        value={data.address}
+                        onChange={e => updateField("address", e.target.value)}
+                    />
+
+                    <CMSLabel labelText="Branch" />
+                    <CMSInput
+                        value={data.branch}
+                        onChange={e => updateField("branch", e.target.value)}
+                    />
                 </CMSCard>
 
                 {/* Social Media Links */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {
-                        data.socialMediaLinks.map((item, index) => (
-                            <CMSCard key={index}>
-                                <CMSLabel labelText={`Social ${index + 1} Name`} />
-                                <CMSInput
-                                    value={item.name}
-                                    onChange={e =>
-                                        updateSocial(index, "name", e.target.value)
-                                    }
-                                />
+                    {data.socialMediaLinks.map((item, index) => (
+                        <CMSCard key={index}>
+                            <CMSLabel labelText={`Social ${index + 1} Name`} />
+                            <CMSInput
+                                value={item.name}
+                                onChange={e =>
+                                    updateSocial(index, "name", e.target.value)
+                                }
+                            />
 
-                                <CMSLabel labelText="Profile URL" />
-                                <CMSInput
-                                    value={item.url}
-                                    onChange={e =>
-                                        updateSocial(index, "url", e.target.value)
-                                    }
-                                />
+                            <CMSLabel labelText="Profile URL" />
+                            <CMSInput
+                                value={item.url}
+                                onChange={e =>
+                                    updateSocial(index, "url", e.target.value)
+                                }
+                            />
 
-                                <CMSLabel labelText="Icon Image URL" />
-                                <CMSInput
-                                    value={item.img}
-                                    onChange={e =>
-                                        updateSocial(index, "img", e.target.value)
-                                    }
-                                />
+                            <CMSLabel labelText="Icon Image URL" />
+                            <CMSInput
+                                value={item.img}
+                                onChange={e =>
+                                    updateSocial(index, "img", e.target.value)
+                                }
+                            />
 
-                                <button
-                                    className="text-red-500 mt-2 text-sm"
-                                    onClick={() => removeSocial(index)}
-                                >
-                                    Remove Social
-                                </button>
-                            </CMSCard>
-                        ))
-                    }
+                            <button
+                                className="text-red-500 mt-2 text-sm"
+                                onClick={() => removeSocial(index)}
+                            >
+                                Remove Social
+                            </button>
+                        </CMSCard>
+                    ))}
                 </div>
 
-                {
-                    data.socialMediaLinks.length < MAX_SOCIAL_LINKS && (
-                        <button
-                            className="mt-2 text-blue-400 hover:text-blue-300 text-sm"
-                            onClick={addSocial}
-                        >
-                            + Add Social Link
-                        </button>
-                    )
-                }
+                {data.socialMediaLinks.length < MAX_SOCIAL_LINKS && (
+                    <button
+                        className="mt-2 text-blue-400 hover:text-blue-300 text-sm"
+                        onClick={addSocial}
+                    >
+                        + Add Social Link
+                    </button>
+                )}
 
             </CMSSection>
 
