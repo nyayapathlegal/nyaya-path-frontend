@@ -36,7 +36,7 @@ export function ASIHighlights() {
                 className="absolute top-10 w-150 h-150 bg-gray-700 rounded-full blur-[150px] opacity-30 z-0"
             />
 
-            <CircularButton text={data.poweredBySection.heading} className="z-1" />
+            <CircularButton text={data?.poweredBySection?.heading} className="z-1" />
 
             <div className="px-4">
                 <Heading subheading={data.poweredBySection.subheading}  />

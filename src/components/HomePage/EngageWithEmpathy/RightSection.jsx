@@ -14,7 +14,7 @@ export const RightSection = () => {
         const fetchData = async () => {
             try {
                 const res = await getMediaSection();
-                setVideoUrl(res.videos.homeMiddleVideo);
+                setVideoUrl(res?.videos?.homeMiddleVideo);
             }
             catch (err) {
                 console.error(err);
