@@ -18,7 +18,7 @@ export const RightSection = () => {
             }
             catch (err) {
                 console.error(err);
-                setVideoUrl(MEDIA_FALLBACK.images.homeRightImage);
+                setVideoUrl(MEDIA_FALLBACK.videos.homeMiddleVideo);
             }
         };
         fetchData();

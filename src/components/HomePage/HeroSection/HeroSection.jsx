@@ -14,45 +14,42 @@ import SubText from "./SubText";
 import SkeletonHero from "../../Skeletons/HeroSkeleton";
 
 export function HeroSection() {
-  const [loading, setLoading] = useState(true);
-  const [heroData, setHeroData] = useState(HERO_FALLBACK);
-  const [mediaData, setMediaData] = useState(
-    MEDIA_FALLBACK.videos.heroBgVideo
-  );
+    const [loading, setLoading] = useState(true);
+    const [heroData, setHeroData] = useState(null);
+    const [mediaData, setMediaData] = useState(null);
 
-  useEffect(() => {
-    async function fetchData() {
-      setLoading(true);
-      try {
-        const [heroResponse, mediaResponse] = await Promise.all([
-          getHeroSection(),
-          getMediaSection(),
-        ]);
+    useEffect(() => {
+        async function fetchData() {
+            setLoading(true);
+            try {
+                const [heroResponse, mediaResponse] = await Promise.all([
+                    getHeroSection(),
+                    getMediaSection(),
+                ]);
 
-        setHeroData(heroResponse || HERO_FALLBACK);
-        setMediaData(
-          mediaResponse?.videos?.heroBgVideo ||
-            MEDIA_FALLBACK.videos.heroBgVideo
-        );
-      } catch (error) {
-        console.log("Error fetching home page data", error);
-        setHeroData(HERO_FALLBACK);
-        setMediaData(MEDIA_FALLBACK.videos.heroBgVideo);
-      } finally {
-        setLoading(false);
-      }
+                setHeroData(heroResponse);
+                setMediaData(mediaResponse?.videos?.heroBgVideo);
+            } 
+            catch (error) {
+                console.log("Error fetching home page data", error);
+                setHeroData(HERO_FALLBACK);
+                setMediaData(MEDIA_FALLBACK.videos.heroBgVideo);
+            } 
+            finally {
+                setLoading(false);
+            }
+        }
+
+        fetchData();
+    }, []);
+
+    if (loading) {
+        return <SkeletonHero />;
     }
 
-    fetchData();
-  }, []);
-
-  if (loading) {
-    return <SkeletonHero />;
-  }
-
-  return (
-    <section
-      className="
+    return (
+        <section
+            className="
         relative 
         w-full
         flex items-center justify-center 
@@ -64,36 +61,36 @@ export function HeroSection() {
         lg:px-10 lg:min-h-screen
         overflow-hidden
       "
-    >
-      {/* Background Video */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        webkit-playsinline="true"
-        preload="auto"
-        controls={false}
-        disablePictureInPicture
-        controlsList="nodownload nofullscreen noremoteplayback"
-        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-      >
-        <source src={mediaData} type="video/mp4" />
-      </video>
+        >
+            {/* Background Video */}
+            <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                webkit-playsinline="true"
+                preload="auto"
+                controls={false}
+                disablePictureInPicture
+                controlsList="nodownload nofullscreen noremoteplayback"
+                className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+            >
+                <source src={mediaData} type="video/mp4" />
+            </video>
 
-      {/* Overlays */}
-      <div className="absolute inset-0 bg-linear-to-b from-black/20 to-black/40" />
-      <div className="absolute bottom-0 left-0 w-full h-1/4 bg-linear-to-b from-transparent to-black" />
+            {/* Overlays */}
+            <div className="absolute inset-0 bg-linear-to-b from-black/20 to-black/40" />
+            <div className="absolute bottom-0 left-0 w-full h-1/4 bg-linear-to-b from-transparent to-black" />
 
-      {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-4">
-        <SmallBadge title={heroData.title} />
-        <MainHeading heading={heroData.heading} />
-        <SubText description={heroData.description} />
-        <TalkToUsButton text="Talk to us" className="mt-8" />
-      </div>
+            {/* Content */}
+            <div className="relative z-10 max-w-4xl mx-auto px-4">
+                <SmallBadge title={heroData?.title} />
+                <MainHeading heading={heroData?.heading} />
+                <SubText description={heroData?.description} />
+                <TalkToUsButton text="Talk to us" className="mt-8" />
+            </div>
 
-      <CounterSection />
-    </section>
-  );
+            <CounterSection />
+        </section>
+    );
 }

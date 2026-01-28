@@ -11,7 +11,7 @@ import { FEATURES_POWEREDBY_FALLBACK } from "@/config/fallbacks/homepageFallback
 
 export function ASIHighlights() {
     
-    const [data, setData] = useState(FEATURES_POWEREDBY_FALLBACK);
+    const [data, setData] = useState(null);
     
     useEffect(() => {
         async function fetchSecondFeatures() {
@@ -39,12 +39,12 @@ export function ASIHighlights() {
             <CircularButton text={data?.poweredBySection?.heading} className="z-1" />
 
             <div className="px-4">
-                <Heading subheading={data.poweredBySection.subheading}  />
-                <Subtext description={data.poweredBySection.description}/>
+                <Heading subheading={data?.poweredBySection?.subheading}  />
+                <Subtext description={data?.poweredBySection?.description}/>
             </div>
 
             <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16 w-full max-w-6xl relative z-10">
-                {data.features.map((feature, index) => (
+                {data?.features?.map((feature, index) => (
                     <FeatureCard key={index} index={index} feature={feature} />
                 ))}
             </div>

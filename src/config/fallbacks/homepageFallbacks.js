@@ -1,7 +1,7 @@
-export const HERO_FALLBACK = {
-    title: "Justice. Integrity. Results.",
-    heading: "Legal Guidance You Can Trust",
-    description: "At Nyaya Path Legal, we provide professional legal consultation and strong representation, ensuring clarity, strategic advice, and dedicated support tailored to your specific legal needs.",
+export const HERO_FALLBACK ={
+  title: "Dedicated to Justice. Committed to You!!!",
+  heading: "A Trusted Partner in Law.\n Delivering Justice with Integrity.",
+  description: "Understand your legal position, analyze case details, reduce legal stress, guide informed decisions, anticipate outcomes, and protect your rights at every step."
 };
 
 export const COUNTER_FALLBACK = {
@@ -15,18 +15,26 @@ export const COUNTER_FALLBACK = {
 };
 
 export const EXPERTIES_OVERVIEW_FALLBACK = {
-    sectionKey: "legal_expertise",
-    description: "Facing legal challenges or delays in resolving your case? Our experienced legal team offers clear legal guidance, efficiently manages complex matters, and works diligently to deliver timely, reliable, and effective legal solutions.",
-    card: {
-        title: "Legal Expertise Overview",
-        metrics: [
-            { label: "Case Success Rate", value: 25 },
-            { label: "Client Satisfaction", value: 50 },
-            { label: "Compliance Accuracy", value: 75 }
-        ]
-    }
-};
-
+  sectionKey: "legal_expertise",
+  description: "Facing legal challenges and delays in resolving your case? Our experienced legal team provides clear guidance, handles complexities efficiently, and works diligently to achieve timely and effective legal solutions.",
+  card: {
+    title: "Legal Expertise Overview!",
+    metrics: [
+      {
+        label: "Case Success Rate",
+        value: 25
+      },
+      {
+        label: "Client Satisfaction",
+        value: 50
+      },
+      {
+        label: "Compliance Accuracy",
+        value: 75
+      }
+    ]
+  }
+}
 export const FEATURES_FALLBACK = {
     leftTitle: "Our Services",
     leftSubtitle: "Professional Legal Assistance for Every Client",
@@ -198,63 +206,29 @@ export const FEATURES_POWEREDBY_FALLBACK = {
 
 
 export const FOOTER_FALLBACK = {
-    companyName: "NPL",
-    footerText: "Providing professional legal and advisory services with integrity, clarity, and trust. We are dedicated to delivering personalized legal guidance and dependable support to individuals and businesses alike.",
-    menuData: [
-        {
-            title: "Services",
-            data: [
-                { text: "Consultation", link: "/consultation" },
-                { text: "Advisory Services", link: "/services" },
-                { text: "Compliance Support", link: "/compliance" },
-                { text: "Representation", link: "/representation" }
-            ]
-        },
-        {
-            title: "Professional",
-            data: [
-                { text: "About", link: "/about" },
-                { text: "Expertise", link: "/expertise" },
-                { text: "Experience", link: "/experience" },
-                { text: "Contact", link: "/contact" }
-            ]
-        },
-        {
-            title: "Resources",
-            data: [
-                { text: "Articles", link: "/articles" },
-                { text: "FAQs", link: "/faqs" },
-                { text: "Insights", link: "/insights" },
-                { text: "Updates", link: "/updates" }
-            ]
-        },
-        {
-            title: "Legal",
-            data: [
-                { text: "Privacy Policy", link: "/privacy" },
-                { text: "Terms & Conditions", link: "/terms" },
-                { text: "Disclaimer", link: "/disclaimer" },
-                { text: "Cookies", link: "/cookies" }
-            ]
-        }
-    ],
+    phoneNumber: "123456789",
+    gmail: "nyayapathlegal@gmail.com",
+    address: "ABC",
+    branch: "ABC",
     socialMediaLinks: [
         {
             name: "X",
             url: "https://x.com/gigaml?lang=en",
-            img: "https://upload.wikimedia.org/wikipedia/commons/5/53/X_logo_2023_original.svg",
+            img: "https://upload.wikimedia.org/wikipedia/commons/5/53/X_logo_2023_original.svg"
         },
         {
             name: "LinkedIn",
             url: "https://www.linkedin.com/company/gigaml",
-            img: "https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg",
+            img: "https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg"
         },
         {
             name: "Instagram",
             url: "https://www.instagram.com/",
-            img: "https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg",
-        },
-    ]
+            img: "https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg"
+        }
+    ],
+    videoText: "JUSTICE",
+    footerText: "Providing professional advisory and legal services with integrity, clarity, and trust. We are committed to delivering personalized guidance and reliable support for every client."
 };
 
 export const PERSONALIZED_CONSULTATION_FALLBACK = {

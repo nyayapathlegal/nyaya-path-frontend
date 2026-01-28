@@ -41,7 +41,7 @@ const Counter = ({ end, label, duration = 1000 }) => {
 
 const CounterSection = () => {
 
-    const [data, setData] = useState(COUNTER_FALLBACK);
+    const [data, setData] = useState(null);
 
 
     useEffect( () => {

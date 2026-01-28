@@ -9,7 +9,7 @@ import { THEMES } from "@/styles/themes";
 
 export const LeftSection = () => {
 
-    const [data, setData] = useState(VOICE_FALLBACK);
+    const [data, setData] = useState(null);
 
     useEffect( () => {
         async function fetchVoiceData() {
@@ -31,11 +31,11 @@ export const LeftSection = () => {
                 <div className="space-y-4">
                     <div className="flex items-center gap-2">
                         <h1 className={`text-[32px] font-[450] self-start tracking-tight ${THEMES.current.textPrimary}`}>
-                            {data.voiceSection.title}
+                            {data?.voiceSection?.title}
                         </h1>
                     </div>
-                    <Description description={ data.voiceSection.description} />
-                    <CircularButton text={data.voiceSection.ctaText} />
+                    <Description description={ data?.voiceSection?.description} />
+                    <CircularButton text={data?.voiceSection?.ctaText} />
                 </div>
             </div>
         </div>

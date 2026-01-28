@@ -46,9 +46,9 @@ export function SmartInsightsSection() {
             "
         >
             <TopSection 
-                title={stepsData.heroSection.title}
-                description={stepsData.heroSection.description}
-                ctaText={stepsData.heroSection.ctaText}
+                title={stepsData?.heroSection?.title}
+                description={stepsData?.heroSection?.description}
+                ctaText={stepsData?.heroSection?.ctaText}
             />
 
             <div className="relative">

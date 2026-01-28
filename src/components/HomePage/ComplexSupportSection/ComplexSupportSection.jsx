@@ -9,7 +9,7 @@ import { EXPERTIES_OVERVIEW_FALLBACK } from "@/config/fallbacks/homepageFallback
 
 export function ComplexSupportSection() {
 
-	const [data, setData] = useState(EXPERTIES_OVERVIEW_FALLBACK);
+	const [data, setData] = useState(null);
 
 	useEffect(() => {
 		async function fetchLegalExperienceOverviewData() {
@@ -36,7 +36,7 @@ export function ComplexSupportSection() {
 				transition={{ duration: 0.8 }}
 				whileHover={{ scale: 1.03, boxShadow: "0px 20px 40px rgba(0,0,0,0.15)" }}
 			>
-				<LegalExpertiseCard card={data.card} />
+				<LegalExpertiseCard card={data?.card} />
 			</motion.div>
 
 			{/* Left + Right Sections */}
@@ -47,7 +47,7 @@ export function ComplexSupportSection() {
 				viewport={{ once: true }}
 				transition={{ duration: 0.8, delay: 0.2 }}
 			>
-				<TextSection description={data.description} />
+				<TextSection description={data?.description} />
 			</motion.div>
 		</section>
 	);

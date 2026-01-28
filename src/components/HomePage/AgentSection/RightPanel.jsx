@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect, useState, useMemo } from "react";
 import StudyHelper from "./AgentComponents/StudyHelper";
 import EmotionalAgent from "./AgentComponents/EmotionalAgent";
 import TaskAgentCard from "./AgentComponents/TaskAgentCard";
@@ -8,7 +9,6 @@ import SkillCoach from "./AgentComponents/SkillCoach";
 import BusinessBot from "./AgentComponents/BusinessBot";
 import CustomAgent from "./AgentComponents/CustomAgent";
 import { MEDIA_FALLBACK } from "@/config/fallbacks/mediaFallback";
-import { useState, useEffect } from "react";
 import { getMediaSection } from "@/api/home/home.api";
 
 const componentsMap = [
@@ -20,25 +20,35 @@ const componentsMap = [
     CustomAgent,
 ];
 
-const RightPanel = ({ steps, activeStep }) => {
+const RightPanel = ({ steps = [], activeStep = 0 }) => {
+    const [imageUrl, setImageUrl] = useState(
+        MEDIA_FALLBACK.images.homeRightImage
+    );
 
-    const [imageUrl, setImageUrl] = useState(MEDIA_FALLBACK.images.homeRightImage);
-    const Component = componentsMap[activeStep] || null;
+    const safeIndex = Math.min(activeStep, componentsMap.length - 1);
+    const Component = componentsMap[safeIndex] ?? null;
+    const stepData = steps?.[safeIndex] ?? {};
 
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await getMediaSection();
 
-        useEffect(() => {
-            const fetchData = async () => {
-                try {
-                    const res = await getMediaSection();
-                    setImageUrl(res?.images?.homeRightImage);
-                } 
-                catch (err) {
-                    console.error(err);
-                    setImageUrl(MEDIA_FALLBACK.images.homeRightImage);
-                }   
-            };
-            fetchData();
-        }, []);
+                const image =
+                    res?.images?.homeRightImage ||
+                    MEDIA_FALLBACK.images.homeRightImage;
+
+                setImageUrl(image);
+            } catch (err) {
+                console.error("Media section API failed:", err);
+                setImageUrl(MEDIA_FALLBACK.images.homeRightImage);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    if (!imageUrl) return null;
 
     return (
         <div className="hidden md:block mt-6 relative flex-1 overflow-hidden">
@@ -48,11 +58,16 @@ const RightPanel = ({ steps, activeStep }) => {
                     alt="Step visual"
                     fill
                     className="object-cover"
-                    priority={"true"}
+                    priority
                 />
 
-                <div className="absolute w-full h-full flex items-center justify-center">
-                    {Component && <Component title={steps[activeStep]?.title} description={steps[activeStep]?.description} />}
+                <div className="absolute inset-0 flex items-center justify-center z-10">
+                    {Component && (
+                        <Component
+                            title={stepData?.title}
+                            description={stepData?.description}
+                        />
+                    )}
                 </div>
 
                 <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-transparent" />

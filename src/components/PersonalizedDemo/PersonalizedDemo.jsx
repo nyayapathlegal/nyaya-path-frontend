@@ -10,7 +10,7 @@ import { getPersonalizedConsultation } from "@/api/home/home.api";
 
 export const PersonalizedDemo = () => {
 
-    const [data, setData] = useState(PERSONALIZED_CONSULTATION_FALLBACK);
+    const [data, setData] = useState(null);
 
     useEffect ( () => {
         async function fetchData () {
@@ -40,7 +40,7 @@ export const PersonalizedDemo = () => {
                     text-black
                 "
             >
-                <Badge text={data.tagline} />
+                <Badge text={data?.tagline} />
 
                 <div 
                     className="
@@ -52,7 +52,7 @@ export const PersonalizedDemo = () => {
                         flex-wrap
                     "
                 >
-                    <Heading heading={data.heading} />
+                    <Heading heading={data?.heading} />
 
                     <div 
                         className="
@@ -65,7 +65,7 @@ export const PersonalizedDemo = () => {
                             flex-2
                         "
                     >
-                        <Description description={data.description} />
+                        <Description description={data?.description} />
 
                         <div>
                             <TalkToUsButton
