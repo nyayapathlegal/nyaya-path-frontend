@@ -101,13 +101,13 @@ export function Header() {
                 ref={navbarRef}
                 className="sticky top-0 z-50 bg-white shadow-sm"
             >
-                <div className="max-w-screen-2xl mx-auto px-6">
+                <div className="max-w-screen-2xl mx-auto px-1">
                     <div className="flex h-20 items-center justify-between">
 
                         <Logo />
 
                         {/* DESKTOP NAV */}
-                        <div className="hidden xl:flex gap-6">
+                        <div className="hidden xl:flex items-center justify-between gap-1">
                             {
                                 navItems.map((nav) => (
                                     <button
@@ -116,17 +116,16 @@ export function Header() {
                                         className="flex items-center gap-1 px-3 py-2 font-semibold hover:text-orange-600"
                                     >
                                         {nav.title}
-                                        {nav.children && <ChevronDown className="h-4 w-4" />}
                                     </button>
                                 ))
                             }
                         </div>
 
                         {/* DESKTOP LOGIN */}
-                        <div className="hidden xl:flex">
+                        <div className="hidden xl:block p-3">
                             <Link
                                 href="/login"
-                                className="px-6 py-2 rounded-xl font-bold text-sm bg-black text-white"
+                                className="px-6 py-2 rounded-lg font-bold text-sm bg-black text-white"
                             >
                                 Login
                             </Link>
