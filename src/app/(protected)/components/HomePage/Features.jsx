@@ -168,7 +168,7 @@ const OurServices = () => {
                             />
 
                             <button
-                                className="text-red-500 mt-2"
+                                className="mt-2 text-red-500 text-sm hover:text-red-400"
                                 onClick={() => removeItem(index)}
                             >
                                 Remove Feature

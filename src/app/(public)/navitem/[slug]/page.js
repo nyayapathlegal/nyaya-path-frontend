@@ -44,7 +44,7 @@ const NavItemPage = () => {
     if (loading) return <HeaderPagesSkeleton />
     if (!pageData) return <div className="p-10 text-center">Page not found.</div>;
 
-    const {page } = pageData;
+    const { page } = pageData;
     return <HeaderPages page={page} />
 
 };

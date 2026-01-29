@@ -132,7 +132,7 @@ const CountersCMS = () => {
                             <button
                                 type="button"
                                 onClick={() => removeCounter(i)}
-                                className="px-2 text-red-400"
+                                className="px-2 text-red-500 text-sm hover:text-red-400"
                             >
                                 Remove
                             </button>
@@ -146,7 +146,7 @@ const CountersCMS = () => {
                         <button
                             type="button"
                             onClick={addCounter}
-                            className="mt-2 text-blue-400 text-sm"
+                            className="mt-2 text-blue-400 hover:text-blue-300 text-sm"
                         >
                             + Add Counter
                         </button>

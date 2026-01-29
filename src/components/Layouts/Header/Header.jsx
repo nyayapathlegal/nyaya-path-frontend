@@ -103,7 +103,7 @@ export function Header() {
             >
                 <div className="max-w-screen-2xl mx-auto px-6">
                     <div className="flex h-20 items-center justify-between">
-                        
+
                         <Logo />
 
                         {/* DESKTOP NAV */}
@@ -167,7 +167,7 @@ export function Header() {
                                         onMouseEnter={() => setHoveredCategory(cat.title)}
                                         className={`w-full px-5 py-4 text-left text-[17px] font-semibold
                                             ${hoveredCategory === cat.title
-                                                ? "bg-orange-500 text-white"
+                                                ? "bg-linear-to-r from-amber-400 via-yellow-500 to-amber-600 text-white"
                                                 : "hover:bg-gray-100"
                                             }`}
                                     >
@@ -246,10 +246,10 @@ export function Header() {
                                                                 )
                                                             }
                                                             className="
-  w-full flex justify-between items-center
-  pl-4 py-2
-  text-sm font-semibold text-gray-800
-"
+                                                                w-full flex justify-between items-center
+                                                                pl-4 py-2
+                                                                text-sm font-semibold text-gray-800
+                                                            "
 
                                                         >
                                                             {cat.title}
@@ -262,23 +262,24 @@ export function Header() {
                                                         </button>
 
 
-                                                        {activeCategory === cat.title &&
-                                                            cat.children?.map((item) => (
-                                                                <Link
-                                                                    key={item.slug}
-                                                                    href={`/navitem/${item.slug}`}
-                                                                    onClick={() => setIsMobileMenuVisible(false)}
-                                                                    className="
-  block pl-8 py-1.5
-  text-sm text-gray-600
-  before:content-['–'] before:mr-2
-"
-
-
-                                                                >
-                                                                    {item.title}
-                                                                </Link>
-                                                            ))}
+                                                        {
+                                                            activeCategory === cat.title && (
+                                                                cat.children?.map((item) => (
+                                                                    <Link
+                                                                        key={item.slug}
+                                                                        href={`/navitem/${item.slug}`}
+                                                                        onClick={() => setIsMobileMenuVisible(false)}
+                                                                        className="
+                                                                            block pl-8 py-1.5
+                                                                            text-sm text-gray-600
+                                                                            before:content-['–'] before:mr-2
+                                                                        "
+                                                                    >
+                                                                        {item.title}
+                                                                    </Link>
+                                                                ))
+                                                            )
+                                                        }
                                                     </div>
                                                 ))}
                                             </div>

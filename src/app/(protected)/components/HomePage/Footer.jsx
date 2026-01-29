@@ -191,7 +191,7 @@ const FooterCMS = () => {
                             />
 
                             <button
-                                className="text-red-500 mt-2 text-sm"
+                                className="mt-2 text-red-500 text-sm hover:text-red-400"
                                 onClick={() => removeSocial(index)}
                             >
                                 Remove Social
