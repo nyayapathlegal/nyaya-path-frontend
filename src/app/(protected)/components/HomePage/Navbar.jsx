@@ -195,7 +195,7 @@
             });
         };
 
-        const MAX_POINTS = 5;
+        const MAX_POINTS = 15;
         const MIN_POINTS = 1;
 
         const addPoint = (arr) =>
