@@ -26,10 +26,10 @@ import ServicesSection from "@/components/HomePage/ServicesSection/Services";
 
 export function HomeMainSection() {
 
-    const [featuresSection, setFeaturesSection] = useState(null);
-    const [clientExperience, setClientExperience] = useState(null);
-    const [opportunitiesSection, setOpportunitiesSection] = useState(null);
-    const [visionSection, setVisionSection] = useState(null);
+    const [featuresSection, setFeaturesSection] = useState(FEATURES_FALLBACK);
+    const [clientExperience, setClientExperience] = useState(CLIENT_EXRERIENCE_FALLBACK);
+    const [opportunitiesSection, setOpportunitiesSection] = useState(OPPORTUNITIES_FALLBACK);
+    const [visionSection, setVisionSection] = useState(VISION_FALLBACK);
 
     useEffect(() => {
 
