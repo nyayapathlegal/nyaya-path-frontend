@@ -334,7 +334,7 @@
         return (
             <>
                 {/* Tabs */}
-                <div className="flex gap-4 border-b border-white/10 overflow-x-auto pb-2">
+                <div className="flex items-center border-b border-white/10 overflow-x-auto pb-2">
                     {
                         navbarItems.map((tab) => (
                             <CMSTopButton

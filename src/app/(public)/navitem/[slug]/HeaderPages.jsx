@@ -1,9 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
 import { Calendar, CheckCircle2, FileText, ShieldCheck, UserCheck, MessageSquare, ArrowRight, Phone, Mail, Briefcase} from "lucide-react";
-import { getMediaSection } from "@/api/home/home.api";
 import { MEDIA_FALLBACK } from "@/config/fallbacks/mediaFallback";
 
 const Section = ({
@@ -139,19 +137,8 @@ const StickyForm = () => (
 
 
 const HeaderPages = ({page}) => {
-    const [imageUrl, setImageUrl] = useState(MEDIA_FALLBACK.images.headerPageImage);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const res = await getMediaSection();
-                if (res?.images?.homeRightImage) setImageUrl(res.images.homeRightImage);
-            } catch (err) {
-                console.error("Header image fetch failed", err);
-            }
-        };
-        fetchData();
-    }, []);
+   const imageUrl = page?.hero?.image ?? MEDIA_FALLBACK.images.headerPageImage;
 
     return (
         <div className="bg-white text-gray-900 min-h-screen">
@@ -172,12 +159,12 @@ const HeaderPages = ({page}) => {
                         {/* Heading */}
                         <h1
                             className="
-                                max-w-4xl
-                                text-3xl
-                                sm:text-4xl
-                                md:text-6xl
-                                lg:text-7xl
-                                xl:text-8xl
+                                max-w-7xl
+                                text-2xl
+                                sm:text-3xl
+                                md:text-4xl
+                                lg:text-5xl
+                                xl:text-6xl
                                 font-bold
                                 tracking-tight
                                 leading-[1.15]
@@ -193,7 +180,7 @@ const HeaderPages = ({page}) => {
                         {/* Subheading */}
                         <p
                             className="
-                                max-w-3xl
+                                max-w-5xl
                                 text-lg
                                 sm:text-xl
                                 md:text-2xl

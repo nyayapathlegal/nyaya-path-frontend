@@ -28,6 +28,7 @@ export default function ProtectedLayout({ children }) {
         <div className="flex flex-row h-screen overflow-hidden bg-black p-4 text-gray-100">
             <Sidebar />
             <div className="flex flex-col gap-y-4 md:gap-y-6 flex-1">
+                
                 <div className="mx-auto w-full">
                     <Header />
                 </div>
