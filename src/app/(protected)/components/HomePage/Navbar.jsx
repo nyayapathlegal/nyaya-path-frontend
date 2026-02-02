@@ -66,7 +66,7 @@
             },
 
             whyChooseUs: {
-                items: [""],
+                text: "",
             },
 
             faqs: {
@@ -212,8 +212,6 @@
 
 
         /* ---------- validation ---------- */
-        const hasAtLeastOneValue = arr =>
-            Array.isArray(arr) && arr.some(v => typeof v === "string" && v.trim());
 
         const checkEmptyPoints = (items, label, path) => {
             for (let i = 0; i < items.length; i++) {
@@ -270,7 +268,12 @@
                         if (!checkEmptyPoints(p.eligibility.items, "Eligibility point", path)) return false;
                         if (!checkEmptyPoints(p.process.steps, "Process step", path)) return false;
                         if (!checkEmptyPoints(p.documents.items, "Document point", path)) return false;
-                        if (!checkEmptyPoints(p.whyChooseUs.items, "Why Choose Us point", path)) return false;
+                        
+                        if (!p.whyChooseUs.text?.trim()) {
+                            toast.error(`Why Choose Us text missing → ${path}`);
+                            return false;
+                        }
+
 
 
                         /* -------- FAQ -------- */
@@ -675,50 +678,14 @@
 
                                                                         <CMSLabel labelText="Why Choose Us" />
 
-                                                                        {page.page.whyChooseUs.items.map((item, i) => (
-                                                                            <div key={i} className="flex gap-2 items-center">
-                                                                                <CMSInput
-                                                                                    value={item}
-                                                                                    onChange={e =>
-                                                                                        updatePage(navIndex, subIndex, pageIndex, page => {
-                                                                                            page.page.whyChooseUs.items = updatePoint(
-                                                                                                page.page.whyChooseUs.items,
-                                                                                                i,
-                                                                                                e.target.value
-                                                                                            );
-                                                                                        })
-                                                                                    }
-                                                                                />
-                                                                                {page.page.whyChooseUs.items.length > MIN_POINTS && (
-                                                                                    <button
-                                                                                        className="text-red-400 text-sm"
-                                                                                        onClick={() =>
-                                                                                            updatePage(navIndex, subIndex, pageIndex, page => {
-                                                                                                page.page.whyChooseUs.items = removePoint(
-                                                                                                    page.page.whyChooseUs.items,
-                                                                                                    i
-                                                                                                );
-                                                                                            })
-                                                                                        }
-                                                                                    >
-                                                                                        ✕
-                                                                                    </button>
-                                                                                )}
-                                                                            </div>
-                                                                        ))}
-
-                                                                        {page.page.whyChooseUs.items.length < MAX_POINTS && (
-                                                                            <button
-                                                                                className="text-blue-400 text-sm mt-1"
-                                                                                onClick={() =>
-                                                                                    updatePage(navIndex, subIndex, pageIndex, page => {
-                                                                                        page.page.whyChooseUs.items = addPoint(page.page.whyChooseUs.items);
-                                                                                    })
-                                                                                }
-                                                                            >
-                                                                                + Add Point
-                                                                            </button>
-                                                                        )}
+                                                                       <CMSTextarea
+                                                                        value={page.page.whyChooseUs.text}
+                                                                        onChange={e =>
+                                                                            updatePage(navIndex, subIndex, pageIndex, page => {
+                                                                            page.page.whyChooseUs.text = e.target.value;
+                                                                            })
+                                                                        }
+                                                                        />
 
 
                                                                         <CMSLabel labelText="FAQ's" />
