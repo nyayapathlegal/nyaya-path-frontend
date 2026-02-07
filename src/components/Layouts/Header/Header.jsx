@@ -30,14 +30,15 @@ export function Header() {
 
     /* ================= FETCH NAV ================= */
     useEffect(() => {
-        (async () => {
+        async function fetchNavData() {
             try {
                 const data = await getNavItems();
-                setNavItems(data?.navItems || []);
+                setNavItems(data?.navItems);
             } catch {
                 setNavItems([]);
             }
-        })();
+        };
+        fetchNavData();
     }, []);
 
     /* ================= CLEAR TIMEOUTS ================= */
@@ -92,6 +93,21 @@ export function Header() {
 
     const activeNav = navItems.find((n) => n.id === activeDesktopNav);
 
+    /* ================= MOBILE NAV TOGGLE ================= */
+    const toggleMobileNav = (navId) => {
+        if (activeMobileNav === navId) {
+            setActiveMobileNav(null);
+            setActiveCategory(null); // Reset category when collapsing
+        } else {
+            setActiveMobileNav(navId);
+            setActiveCategory(null); // Reset category when switching nav items
+        }
+    };
+
+    const toggleCategory = (categoryTitle) => {
+        setActiveCategory(activeCategory === categoryTitle ? null : categoryTitle);
+    };
+
     return (
         <>
             <Ribbon />
@@ -119,6 +135,23 @@ export function Header() {
                                     </button>
                                 ))
                             }
+
+                            {/* <Link
+                                href={"/our-team"}
+                                key={"our-team"}
+                                className="flex items-center gap-1 px-3 py-2 font-semibold hover:text-orange-600"
+                            >
+                                {"Our Team"}
+                            </Link>
+
+                            <Link
+                                href={"/about-us"}
+                                key={"about-us"}
+                                className="flex items-center gap-1 px-3 py-2 font-semibold hover:text-orange-600"
+                            >
+                                {"About Us"}
+                            </Link> */}
+
                         </div>
 
                         {/* DESKTOP LOGIN */}
@@ -166,7 +199,7 @@ export function Header() {
                                         onMouseEnter={() => setHoveredCategory(cat.title)}
                                         className={`w-full px-5 py-4 text-left text-[17px] font-semibold
                                             ${hoveredCategory === cat.title
-                                                ? "bg-linear-to-r from-amber-400 via-yellow-500 to-amber-600 text-white"
+                                                ? "bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 text-white"
                                                 : "hover:bg-gray-100"
                                             }`}
                                     >
@@ -210,23 +243,19 @@ export function Header() {
 
             {/* ================= MOBILE MENU ================= */}
             {isMobileMenuVisible && (
-                <div ref={mobileMenuRef} className="xl:hidden border-t bg-white">
-                    <div className="max-h-[calc(100vh-4rem)] overflow-y-auto p-4">
+                <div ref={mobileMenuRef} className="xl:hidden fixed top-20 left-0 right-0 bottom-0 z-40 bg-white overflow-hidden">
+                    <div className="h-full overflow-y-auto p-4">
                         {
                             navItems.map((nav) => (
-                                <div key={nav.id}>
+                                <div key={nav.id} className="border-b border-gray-100">
                                     <button
-                                        className="w-full flex justify-between px-4 py-3 font-semibold"
-                                        onClick={() =>
-                                            setActiveMobileNav(
-                                                activeMobileNav === nav.id ? null : nav.id
-                                            )
-                                        }
+                                        className="w-full flex justify-between items-center px-4 py-3 font-semibold text-gray-900"
+                                        onClick={() => toggleMobileNav(nav.id)}
                                     >
                                         {nav.title}
                                         {nav.children && (
                                             <ChevronDown
-                                                className={`h-4 w-4 transition ${activeMobileNav === nav.id ? "rotate-180" : ""
+                                                className={`h-4 w-4 transition-transform duration-200 ${activeMobileNav === nav.id ? "rotate-180" : ""
                                                     }`}
                                             />
                                         )}
@@ -234,27 +263,24 @@ export function Header() {
 
                                     {
                                         nav.children && activeMobileNav === nav.id && (
-                                            <div className="pl-4 border-l border-gray-200">
+                                            <div className="pl-4 pb-2 border-l-2 border-gray-200 ml-4">
 
                                                 {nav.children.map((cat) => (
                                                     <div key={cat.title}>
                                                         <button
-                                                            onClick={() =>
-                                                                setActiveCategory(
-                                                                    activeCategory === cat.title ? null : cat.title
-                                                                )
-                                                            }
+                                                            onClick={() => toggleCategory(cat.title)}
                                                             className="
                                                                 w-full flex justify-between items-center
                                                                 pl-4 py-2
                                                                 text-sm font-semibold text-gray-800
+                                                                hover:text-orange-600
                                                             "
 
                                                         >
                                                             {cat.title}
                                                             {cat.children && (
                                                                 <ChevronDown
-                                                                    className={`h-4 w-4 transition ${activeCategory === cat.title ? "rotate-180" : ""
+                                                                    className={`h-4 w-4 transition-transform duration-200 ${activeCategory === cat.title ? "rotate-180" : ""
                                                                         }`}
                                                                 />
                                                             )}
@@ -262,21 +288,28 @@ export function Header() {
 
 
                                                         {
-                                                            activeCategory === cat.title && (
-                                                                cat.children?.map((item) => (
-                                                                    <Link
-                                                                        key={item.slug}
-                                                                        href={`/navitem/${item.slug}`}
-                                                                        onClick={() => setIsMobileMenuVisible(false)}
-                                                                        className="
-                                                                            block pl-8 py-1.5
-                                                                            text-sm text-gray-600
-                                                                            before:content-['–'] before:mr-2
-                                                                        "
-                                                                    >
-                                                                        {item.title}
-                                                                    </Link>
-                                                                ))
+                                                            activeCategory === cat.title && cat.children && (
+                                                                <div className="pl-4">
+                                                                    {cat.children.map((item) => (
+                                                                        <Link
+                                                                            key={item.slug}
+                                                                            href={`/navitem/${item.slug}`}
+                                                                            onClick={() => {
+                                                                                setIsMobileMenuVisible(false);
+                                                                                setActiveMobileNav(null);
+                                                                                setActiveCategory(null);
+                                                                            }}
+                                                                            className="
+                                                                                block pl-8 py-1.5
+                                                                                text-sm text-gray-600
+                                                                                hover:text-orange-600
+                                                                                before:content-['–'] before:mr-2
+                                                                            "
+                                                                        >
+                                                                            {item.title}
+                                                                        </Link>
+                                                                    ))}
+                                                                </div>
                                                             )
                                                         }
                                                     </div>
@@ -287,6 +320,38 @@ export function Header() {
                                 </div>
                             ))
                         }
+
+                        {/* MOBILE: Our Team & About Us */}
+                        {/* <div className="border-b border-gray-100">
+                            <Link
+                                href="/our-team"
+                                onClick={() => setIsMobileMenuVisible(false)}
+                                className="block px-4 py-3 font-semibold text-gray-900 hover:text-orange-600"
+                            >
+                                Our Team
+                            </Link>
+                        </div> */}
+
+                        {/* <div className="border-b border-gray-100">
+                            <Link
+                                href="/about-us"
+                                onClick={() => setIsMobileMenuVisible(false)}
+                                className="block px-4 py-3 font-semibold text-gray-900 hover:text-orange-600"
+                            >
+                                About Us
+                            </Link>
+                        </div> */}
+
+                        {/* MOBILE: Login Button */}
+                        <div className="px-4 py-4">
+                            <Link
+                                href="/login"
+                                onClick={() => setIsMobileMenuVisible(false)}
+                                className="block w-full px-6 py-2 rounded-lg font-bold text-sm text-center bg-black text-white"
+                            >
+                                Login
+                            </Link>
+                        </div>
                     </div>
                 </div>
             )}
