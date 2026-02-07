@@ -245,17 +245,6 @@ export function Header() {
                                     </div>
                                 ))
                             }
-
-                            {/* MOBILE: Login Button */}
-                            <div className="px-4 py-4">
-                                <Link
-                                    href="/login"
-                                    onClick={() => setIsMobileMenuVisible(false)}
-                                    className="block w-full px-6 py-2 rounded-lg font-bold text-sm text-center bg-black text-white"
-                                >
-                                    Login
-                                </Link>
-                            </div>
                         </div>
                     </div>
                 )}
