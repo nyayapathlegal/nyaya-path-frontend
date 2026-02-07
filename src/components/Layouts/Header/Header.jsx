@@ -5,7 +5,8 @@ import { X, Menu, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { getNavItems } from "@/api/home/home.api";
 import Logo from "./Logo";
-import Ribbon from "./Ribbion";
+import { Sparkles } from 'lucide-react'
+
 
 export function Header() {
     const [navItems, setNavItems] = useState([]);
@@ -110,12 +111,20 @@ export function Header() {
 
     return (
         <>
-            <Ribbon />
+            {/* Ribbon */}
+            <div className="bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 text-black py-3 px-4">
+                <div className="max-w-7xl mx-auto text-center text-sm flex items-center justify-center gap-2">
+                    <Sparkles className="w-4 h-4" />
+                    <span className="font-semibold">Special Offer:</span>
+                    <span className="font-medium">Get 20% off on all services this month!</span>
+                    <Sparkles className="w-4 h-4" />
+                </div>
+            </div>
 
             {/* ================= NAV ================= */}
             <nav
                 ref={navbarRef}
-                className="sticky top-0 z-50 bg-white shadow-sm"
+                className="sticky top-0 z-50 bg-white shadow-sm relative"
             >
                 <div className="max-w-screen-2xl mx-auto px-1">
                     <div className="flex h-20 items-center justify-between">
@@ -135,23 +144,6 @@ export function Header() {
                                     </button>
                                 ))
                             }
-
-                            {/* <Link
-                                href={"/our-team"}
-                                key={"our-team"}
-                                className="flex items-center gap-1 px-3 py-2 font-semibold hover:text-orange-600"
-                            >
-                                {"Our Team"}
-                            </Link>
-
-                            <Link
-                                href={"/about-us"}
-                                key={"about-us"}
-                                className="flex items-center gap-1 px-3 py-2 font-semibold hover:text-orange-600"
-                            >
-                                {"About Us"}
-                            </Link> */}
-
                         </div>
 
                         {/* DESKTOP LOGIN */}
@@ -173,6 +165,100 @@ export function Header() {
                         </button>
                     </div>
                 </div>
+
+                {/* ================= MOBILE MENU ================= */}
+                {isMobileMenuVisible && (
+                    <div ref={mobileMenuRef} className="xl:hidden absolute top-full left-0 right-0 bg-white border-t shadow-lg z-40" style={{ maxHeight: 'calc(100vh - 5rem)' }}>
+                        <div className="overflow-y-auto p-4" style={{ maxHeight: 'calc(100vh - 5rem)' }}>
+                            {
+                                navItems.map((nav) => (
+                                    <div key={nav.id} className="border-b border-gray-100">
+                                        <button
+                                            className="w-full flex justify-between items-center px-4 py-3 font-semibold text-gray-900"
+                                            onClick={() => toggleMobileNav(nav.id)}
+                                        >
+                                            {nav.title}
+                                            {nav.children && (
+                                                <ChevronDown
+                                                    className={`h-4 w-4 transition-transform duration-200 flex-shrink-0 ml-2 ${activeMobileNav === nav.id ? "rotate-180" : ""
+                                                        }`}
+                                                />
+                                            )}
+                                        </button>
+
+                                        {
+                                            nav.children && activeMobileNav === nav.id && (
+                                                <div className="pl-4 pb-2 border-l-2 border-gray-200 ml-4">
+
+                                                    {nav.children.map((cat) => (
+                                                        <div key={cat.title}>
+                                                            <button
+                                                                onClick={() => toggleCategory(cat.title)}
+                                                                className="
+                                                                    w-full flex justify-between items-center
+                                                                    pl-4 py-2
+                                                                    text-sm font-semibold text-gray-800
+                                                                    hover:text-orange-600
+                                                                "
+
+                                                            >
+                                                                {cat.title}
+                                                                {cat.children && (
+                                                                    <ChevronDown
+                                                                        className={`h-4 w-4 transition-transform duration-200 flex-shrink-0 ml-2 ${activeCategory === cat.title ? "rotate-180" : ""
+                                                                            }`}
+                                                                    />
+                                                                )}
+                                                            </button>
+
+
+                                                            {
+                                                                activeCategory === cat.title && cat.children && (
+                                                                    <div className="pl-4">
+                                                                        {cat.children.map((item) => (
+                                                                            <Link
+                                                                                key={item.slug}
+                                                                                href={`/navitem/${item.slug}`}
+                                                                                onClick={() => {
+                                                                                    setIsMobileMenuVisible(false);
+                                                                                    setActiveMobileNav(null);
+                                                                                    setActiveCategory(null);
+                                                                                }}
+                                                                                className="
+                                                                                    block pl-8 py-1.5
+                                                                                    text-sm text-gray-600
+                                                                                    hover:text-orange-600
+                                                                                    before:content-['–'] before:mr-2
+                                                                                "
+                                                                            >
+                                                                                {item.title}
+                                                                            </Link>
+                                                                        ))}
+                                                                    </div>
+                                                                )
+                                                            }
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            )
+                                        }
+                                    </div>
+                                ))
+                            }
+
+                            {/* MOBILE: Login Button */}
+                            <div className="px-4 py-4">
+                                <Link
+                                    href="/login"
+                                    onClick={() => setIsMobileMenuVisible(false)}
+                                    className="block w-full px-6 py-2 rounded-lg font-bold text-sm text-center bg-black text-white"
+                                >
+                                    Login
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </nav>
 
             {/* ================= FIXED MEGA MENU ================= */}
@@ -236,121 +322,6 @@ export function Header() {
                                         ))
                                 }
                             </div>
-                        </div>
-                    </div>
-                </div>
-            )}
-
-            {/* ================= MOBILE MENU ================= */}
-            {isMobileMenuVisible && (
-                <div ref={mobileMenuRef} className="xl:hidden fixed top-20 left-0 right-0 bottom-0 z-40 bg-white overflow-hidden">
-                    <div className="h-full overflow-y-auto p-4">
-                        {
-                            navItems.map((nav) => (
-                                <div key={nav.id} className="border-b border-gray-100">
-                                    <button
-                                        className="w-full flex justify-between items-center px-4 py-3 font-semibold text-gray-900"
-                                        onClick={() => toggleMobileNav(nav.id)}
-                                    >
-                                        {nav.title}
-                                        {nav.children && (
-                                            <ChevronDown
-                                                className={`h-4 w-4 transition-transform duration-200 ${activeMobileNav === nav.id ? "rotate-180" : ""
-                                                    }`}
-                                            />
-                                        )}
-                                    </button>
-
-                                    {
-                                        nav.children && activeMobileNav === nav.id && (
-                                            <div className="pl-4 pb-2 border-l-2 border-gray-200 ml-4">
-
-                                                {nav.children.map((cat) => (
-                                                    <div key={cat.title}>
-                                                        <button
-                                                            onClick={() => toggleCategory(cat.title)}
-                                                            className="
-                                                                w-full flex justify-between items-center
-                                                                pl-4 py-2
-                                                                text-sm font-semibold text-gray-800
-                                                                hover:text-orange-600
-                                                            "
-
-                                                        >
-                                                            {cat.title}
-                                                            {cat.children && (
-                                                                <ChevronDown
-                                                                    className={`h-4 w-4 transition-transform duration-200 ${activeCategory === cat.title ? "rotate-180" : ""
-                                                                        }`}
-                                                                />
-                                                            )}
-                                                        </button>
-
-
-                                                        {
-                                                            activeCategory === cat.title && cat.children && (
-                                                                <div className="pl-4">
-                                                                    {cat.children.map((item) => (
-                                                                        <Link
-                                                                            key={item.slug}
-                                                                            href={`/navitem/${item.slug}`}
-                                                                            onClick={() => {
-                                                                                setIsMobileMenuVisible(false);
-                                                                                setActiveMobileNav(null);
-                                                                                setActiveCategory(null);
-                                                                            }}
-                                                                            className="
-                                                                                block pl-8 py-1.5
-                                                                                text-sm text-gray-600
-                                                                                hover:text-orange-600
-                                                                                before:content-['–'] before:mr-2
-                                                                            "
-                                                                        >
-                                                                            {item.title}
-                                                                        </Link>
-                                                                    ))}
-                                                                </div>
-                                                            )
-                                                        }
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        )
-                                    }
-                                </div>
-                            ))
-                        }
-
-                        {/* MOBILE: Our Team & About Us */}
-                        {/* <div className="border-b border-gray-100">
-                            <Link
-                                href="/our-team"
-                                onClick={() => setIsMobileMenuVisible(false)}
-                                className="block px-4 py-3 font-semibold text-gray-900 hover:text-orange-600"
-                            >
-                                Our Team
-                            </Link>
-                        </div> */}
-
-                        {/* <div className="border-b border-gray-100">
-                            <Link
-                                href="/about-us"
-                                onClick={() => setIsMobileMenuVisible(false)}
-                                className="block px-4 py-3 font-semibold text-gray-900 hover:text-orange-600"
-                            >
-                                About Us
-                            </Link>
-                        </div> */}
-
-                        {/* MOBILE: Login Button */}
-                        <div className="px-4 py-4">
-                            <Link
-                                href="/login"
-                                onClick={() => setIsMobileMenuVisible(false)}
-                                className="block w-full px-6 py-2 rounded-lg font-bold text-sm text-center bg-black text-white"
-                            >
-                                Login
-                            </Link>
                         </div>
                     </div>
                 </div>
