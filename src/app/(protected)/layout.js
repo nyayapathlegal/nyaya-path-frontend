@@ -38,7 +38,7 @@ export default function ProtectedLayout({ children }) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-black text-center px-4">
                 <p className="text-zinc-400 text-sm">
-                    This dashboard is accessible only on a laptop or desktop.
+                    This section is accessible only on a laptop or desktop.
                 </p>
             </div>
         );

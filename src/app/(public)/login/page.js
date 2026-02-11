@@ -46,11 +46,6 @@ export default function LoginPage() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!isAllowedScreen) {
-            toast.error("Login allowed only on screens ≥ 1280px");
-            return;
-        }
-
         setLoading(true);
 
         try {
@@ -79,6 +74,16 @@ export default function LoginPage() {
 
     if (isAuthenticated) return null;
 
+    if (!isAllowedScreen) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-black text-center px-4">
+                <p className="text-zinc-400 text-sm">
+                    This section is accessible only on a laptop or desktop.
+                </p>
+            </div>
+        );
+    }
+
     return (
         <div className="min-h-screen flex items-center justify-center bg-black px-4">
             <div className="w-full max-w-md bg-zinc-900 rounded-2xl shadow-2xl p-8 border border-zinc-800">
@@ -86,12 +91,6 @@ export default function LoginPage() {
                 <h1 className="text-3xl font-semibold text-center text-white mb-6">
                     Login to your account
                 </h1>
-
-                {!isAllowedScreen && (
-                    <p className="text-sm text-red-500 text-center mb-4">
-                        Login is allowed only on a laptop.
-                    </p>
-                )}
 
                 <form onSubmit={handleSubmit} className="space-y-5">
                     <div>
@@ -136,38 +135,21 @@ export default function LoginPage() {
 
                     <button
                         type="submit"
-                        disabled={loading || !isAllowedScreen}
-                        className={`
+                        disabled={loading}
+                        className="
                             w-full rounded-lg px-6 py-3
-                            text-sm font-medium
+                            text-sm font-medium text-white
+                            bg-blue-600 hover:bg-blue-700
+                            disabled:cursor-not-allowed
                             transition-all duration-200
-                            active:scale-[0.98] mt-0.5
+                            active:scale-[0.98]
+                        "
 
-                            ${!loading && isAllowedScreen
-                                ? `
-                                    bg-blue-600
-                                    border-2 border-blue-500
-                                    text-white
-
-                                    hover:bg-blue-700
-                                    hover:border-blue-400
-                                ` : `
-                                    bg-[#2a2a2a]
-                                    border-2 border-[#3a3a3a]
-                                    text-zinc-400
-                                    cursor-not-allowed
-                                    select-none
-                                    opacity-60
-                                `
-                            }
-                        `}
                     >
                         {
                             loading ? (
                                 <span className="flex items-center justify-center gap-2">
-                                    <span className="h-4 w-4 animate-spin rounded-full
-                                        border-2 border-white border-t-transparent"
-                                    />
+                                    <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"/>
                                     Logging in...
                                 </span>
                             ) : (
