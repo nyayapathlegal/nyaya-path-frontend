@@ -5,8 +5,9 @@ import CtaSection from "./CtaSection";
 import HeroSection from "./HeroSection";
 import Link from "next/link";
 import { getOurTeam } from "@/api/home/home.api";
+import OurTeamSkeleton from "@/components/Skeletons/OurTeamSkeleton";
 
-// ─── Department accent themes (keyed by department id) ───────────────────────
+// ─── Department accent themes ───
 const DEPT_THEMES = [
     {
         accentText: "text-blue-900",
@@ -56,11 +57,12 @@ const DEPT_THEMES = [
 
 
 function getThemeByIndex(index) {
-    return DEPT_THEMES[index % DEPT_THEMES.length];
+    const n = DEPT_THEMES.length;
+    return DEPT_THEMES[index % n];
 }
 
 
-// ─── Team Carousel ────────────────────────────────────────────────────────────
+// ─── Team Carousel ────
 function TeamCarousel({ dept, index }) {
     
     const theme = getThemeByIndex(index);
@@ -204,37 +206,22 @@ function TeamCarousel({ dept, index }) {
     );
 }
 
-// ─── Loading Skeleton ─────────────────────────────────────────────────────────
-function Skeleton() {
-    return (
-        <div className="mb-24 animate-pulse">
-            <div className="h-12 w-72 bg-gray-200 rounded-lg mb-10" />
-            <div className="flex gap-5">
-                {
-                    [1, 2, 3].map((i) => (
-                        <div key={i} className="shrink-0 w-72 h-80 bg-gray-200 rounded-2xl" />
-                    ))
-                }
-            </div>
-        </div>
-    );
-}
-
-// ─── Page ─────────────────────────────────────────────────────────────────────
+// ─── Page ────
 export default function OurTeamPage() {
 
-    const [departments, setDepartments] = useState([]);
+    const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function fetchTeams() {
             try {            
                 const data = await getOurTeam();
-                setDepartments(data.departments);
+                setData(data);
             } 
             catch (err) {
-                setDepartments([]);
-            } finally {
+                setData(null);
+            } 
+            finally {
                 setLoading(false);
             }
         }
@@ -242,6 +229,9 @@ export default function OurTeamPage() {
     }, []);
 
    
+    if(loading) {
+        return <OurTeamSkeleton />
+    }
 
 
     return (
@@ -281,22 +271,26 @@ export default function OurTeamPage() {
             <div className="bg-stone-50 min-h-screen antialiased">
 
                 {/* HERO */}
-                <HeroSection departments={departments} />
+                <HeroSection hero={data.hero} />
 
                 {/* DEPT PILLS */}
                 <nav className="max-w-7xl mx-auto px-6 md:px-14 pb-12 flex flex-wrap gap-2">
                     {
-                        departments.map((dept, i) => {
-                        const theme = getThemeByIndex(i);
-                        return (
-                            <Link key={dept.id} href={`#${dept.id}`}
-                                className={`text-[11px] font-medium tracking-wide text-gray-500
-                            border border-gray-200 bg-white rounded-full px-5 py-2
-                            transition-all duration-200 no-underline ${theme.pillHover}`}>
-                                {String(i + 1).padStart(2, "0")} — {dept.label}
-                            </Link>
-                        );
-                    })}
+                        data?.departments?.map( (dept, i) => {
+                            const theme = getThemeByIndex(i);
+                            
+                            return (
+                                <Link 
+                                    key={dept.id} 
+                                    href={`#${dept.id}`}
+                                    className={`text-[11px] font-medium tracking-wide text-gray-500
+                                        border border-gray-200 bg-white rounded-full px-5 py-2
+                                        transition-all duration-200 no-underline ${theme.pillHover}`}>
+                                    {String(i + 1).padStart(2, "0")} — {dept.label}
+                                </Link>
+                            );
+                        })
+                    }
                 </nav>
                 
 
@@ -304,7 +298,7 @@ export default function OurTeamPage() {
                 {/* CAROUSELS */}
                 <main className="max-w-7xl mx-auto px-6 md:px-14 pb-10">
                     {
-                        departments.map( (dept, index) => (
+                        data?.departments?.map( (dept, index) => (
                             <TeamCarousel key={dept.id} dept={dept} index={index} />
                         ))
                     }

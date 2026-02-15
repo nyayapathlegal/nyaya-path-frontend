@@ -2,72 +2,153 @@
 
 const HeaderPagesSkeleton = () => {
     return (
-        <div className="w-full min-h-screen bg-slate-950">
-            {/* ================= HERO SKELETON ================= */}
-            <section className="relative h-screen flex items-center overflow-hidden">
-                
-                {/* Subtle Gradient Background */}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--tw-gradient-stops))] from-slate-800/40 via-slate-950 to-slate-950" />
+        <div className="bg-white min-h-screen">
 
-                {/* Main Content Container */}
-                <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-                    
-                    {/* Left Content: Text Stack */}
+            {/* ================= HERO IMAGE SKELETON ================= */}
+            {/* ================= HERO IMAGE SKELETON ================= */}
+            <section className="w-full py-28">
+
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="max-w-3xl space-y-6 animate-pulse">
+
+                        {/* Title */}
+                        <div className="space-y-3">
+                            <div className="h-12 w-3/4 bg-gray-300 rounded-xl" />
+                            <div className="h-12 w-2/3 bg-gray-300 rounded-xl" />
+                        </div>
+
+                        {/* Highlight line */}
+                        <div className="h-5 w-1/2 bg-gray-200 rounded-lg" />
+
+                        {/* Description */}
+                        <div className="space-y-3">
+                            <div className="h-4 w-full bg-gray-200 rounded-full" />
+                            <div className="h-4 w-11/12 bg-gray-200 rounded-full" />
+                            <div className="h-4 w-10/12 bg-gray-200 rounded-full" />
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+
+
+            <section className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-3 gap-14 animate-pulse">
+
+                {/* ================= LEFT CONTENT ================= */}
+                <div className="lg:col-span-2 space-y-20">
+
+                    {/* ---------- HERO TEXT ---------- */}
+                    <div className="space-y-6">
+                        <div className="space-y-3">
+                            <div className="h-12 w-3/4 bg-gray-200 rounded-xl" />
+                            <div className="h-12 w-2/3 bg-gray-200 rounded-xl" />
+                        </div>
+
+                        <div className="h-6 w-1/2 bg-amber-100 rounded-lg" />
+
+                        <div className="space-y-3">
+                            <div className="h-4 w-full bg-gray-200 rounded-full" />
+                            <div className="h-4 w-full bg-gray-200 rounded-full" />
+                            <div className="h-4 w-5/6 bg-gray-200 rounded-full" />
+                            <div className="h-4 w-4/6 bg-gray-200 rounded-full" />
+                        </div>
+                    </div>
+
+                    {/* ---------- OVERVIEW SECTION ---------- */}
+                    <div className="space-y-6">
+                        <div className="h-10 w-64 bg-gray-300 rounded-xl" />
+
+                        <div className="space-y-3">
+                            {[1, 2, 3, 4, 5].map(i => (
+                                <div key={i} className="h-4 w-full bg-gray-200 rounded-full" />
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* ---------- KEY BENEFITS ---------- */}
                     <div className="space-y-8">
-                        {/* Top Badge Skeleton */}
-                        {/* <div className="h-6 w-32 bg-slate-800 rounded-full animate-pulse" /> */}
+                        <div className="h-10 w-56 bg-gray-300 rounded-xl" />
+
+                        <div className="grid md:grid-cols-2 gap-6">
+                            {[1, 2, 3, 4].map(i => (
+                                <div
+                                    key={i}
+                                    className="border border-gray-200 rounded-2xl p-6 space-y-4 bg-white"
+                                >
+                                    <div className="h-10 w-10 bg-amber-100 rounded-lg" />
+                                    <div className="h-4 w-3/4 bg-gray-200 rounded-full" />
+                                    <div className="h-4 w-full bg-gray-200 rounded-full" />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* ---------- PROCESS STEPS ---------- */}
+                    <div className="space-y-8">
+                        <div className="h-10 w-48 bg-gray-300 rounded-xl" />
+
+                        <div className="space-y-6">
+                            {[1, 2, 3].map(i => (
+                                <div
+                                    key={i}
+                                    className="flex gap-4 items-start"
+                                >
+                                    <div className="h-10 w-10 bg-amber-100 rounded-full" />
+                                    <div className="space-y-2 flex-1">
+                                        <div className="h-4 w-1/3 bg-gray-200 rounded-full" />
+                                        <div className="h-4 w-full bg-gray-200 rounded-full" />
+                                        <div className="h-4 w-5/6 bg-gray-200 rounded-full" />
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* ---------- DOCUMENTS REQUIRED ---------- */}
+                    <div className="space-y-8">
+                        <div className="h-10 w-64 bg-gray-300 rounded-xl" />
+
+                        <div className="grid md:grid-cols-2 gap-4">
+                            {[1, 2, 3, 4, 5, 6].map(i => (
+                                <div
+                                    key={i}
+                                    className="h-12 bg-gray-100 border border-gray-200 rounded-lg"
+                                />
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* ---------- FAQ PREVIEW ---------- */}
+                    <div className="space-y-8">
+                        <div className="h-10 w-40 bg-gray-300 rounded-xl" />
 
                         <div className="space-y-4">
-                            {/* Heading Lines */}
-                            <div className="h-16 w-full bg-slate-800/80 rounded-2xl animate-pulse" />
-                            <div className="h-16 w-4/5 bg-slate-800/80 rounded-2xl animate-pulse" />
+                            {[1, 2, 3, 4].map(i => (
+                                <div
+                                    key={i}
+                                    className="h-14 bg-gray-100 border border-gray-200 rounded-xl"
+                                />
+                            ))}
                         </div>
-
-                        {/* Subheading */}
-                        <div className="h-8 w-2/3 bg-amber-500/10 rounded-lg animate-pulse" />
-
-                        {/* Description Paragraph */}
-                        <div className="space-y-3">
-                            <div className="h-4 w-full bg-slate-800/50 rounded-full animate-pulse" />
-                            <div className="h-4 w-full bg-slate-800/50 rounded-full animate-pulse" />
-                            <div className="h-4 w-3/4 bg-slate-800/50 rounded-full animate-pulse" />
-                        </div>
-
-                        {/* CTA Button */}
-                        <div className="h-14 w-52 bg-slate-800 rounded-xl animate-pulse border border-white/5" />
                     </div>
 
-                    {/* Right Content: Visual Placeholder */}
-                    {/* <div className="hidden md:block relative">
-                        <div className="absolute -inset-4 bg-amber-500/5 blur-3xl rounded-full" />
-                        <div className="relative h-[450px] w-full bg-slate-900/50 border border-white/5 rounded-3xl animate-pulse overflow-hidden">
-                            <div className="absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-linear-to-r from-transparent via-white/5 to-transparent" />
-                        </div>
-                    </div> */}
                 </div>
-            </section>
 
-            {/* ================= CONTENT SECTION SKELETON ================= */}
-            <section className="bg-white py-24">
-                <div className="max-w-4xl mx-auto px-6 flex flex-col items-center">
-                    {/* Section Title */}
-                    <div className="h-10 w-64 bg-slate-200 rounded-lg mb-8 animate-pulse" />
-                    
-                    {/* Body Text lines centered */}
-                    <div className="w-full space-y-4">
-                        <div className="h-4 w-full bg-slate-100 rounded-full animate-pulse" />
-                        <div className="h-4 w-11/12 bg-slate-100 rounded-full animate-pulse mx-auto" />
-                        <div className="h-4 w-10/12 bg-slate-100 rounded-full animate-pulse mx-auto" />
-                    </div>
+                {/* ================= RIGHT STICKY FORM ================= */}
+                <div className="bg-white border border-gray-200 rounded-2xl p-6 space-y-5 shadow-sm h-fit sticky top-28">
+                    <div className="h-6 w-40 bg-gray-300 rounded-full" />
+                    <div className="h-4 w-3/4 bg-gray-200 rounded-full" />
+
+                    {[1, 2, 3, 4].map(i => (
+                        <div key={i} className="h-12 bg-gray-100 rounded-lg border border-gray-200" />
+                    ))}
+
+                    <div className="h-12 bg-amber-500 rounded-xl" />
                 </div>
-            </section>
 
-            {/* Add this custom animation to your global CSS or Tailwind config if not using standard pulse */}
-            <style jsx>{`
-                @keyframes shimmer {
-                    100% { transform: translateX(100%); }
-                }
-            `}</style>
+            </section>
         </div>
     );
 };
