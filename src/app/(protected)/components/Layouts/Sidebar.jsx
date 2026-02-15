@@ -51,7 +51,7 @@ const DEFAULT_SIDEBAR_ITEMS = [
     { name: "Footer", href: "/dashboard/footer", icon: "Layers" },
     { name: "Media", href: "/dashboard/media", icon: "Image" },
     { name: "Extra Services", href: "/dashboard/extraservices", icon: "Briefcase" },
-    // { name: "Clients", href: "/dashboard/clients", icon: "Users" },
+    { name: "Our Team", href: "/dashboard/our-team", icon: "Users" },
     // { name: "Themes", href: "/dashboard/theme", icon: "Palette" },
     // { name: "Cases & Matters", href: "/dashboard/cases", icon: "Clipboard" },
     // { name: "Compliance & Filings", href: "/dashboard/compliance", icon: "FileText" },

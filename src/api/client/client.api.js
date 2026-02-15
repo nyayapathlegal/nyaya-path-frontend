@@ -95,3 +95,9 @@ export async function setFooter(data) {
     const response = await clientApi.post("/footer", data);
     return response.data;
 }
+
+// Footer
+export async function setOurTeam(data) {
+    const response = await clientApi.post("/our-team", data);
+    return response.data;
+}

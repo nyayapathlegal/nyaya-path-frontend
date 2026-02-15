@@ -175,3 +175,14 @@ export async function getFooter() {
         throw err;
     }
 }
+
+// Footer
+export async function getOurTeam() {
+    try {
+        const response = await api.get("/our-team");
+        return response.data;
+    } catch (err) {
+        console.error("getFooter error:", err);
+        throw err;
+    }
+}
