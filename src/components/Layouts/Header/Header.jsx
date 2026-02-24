@@ -6,6 +6,7 @@ import Link from "next/link";
 import { getNavItems } from "@/api/home/home.api";
 import Logo from "./Logo";
 import { Sparkles } from 'lucide-react'
+import { NAVBAR_FALLBACK } from "@/config/fallbacks/navItemsFallback";
 
 
 export function Header() {
@@ -36,7 +37,8 @@ export function Header() {
                 const data = await getNavItems();
                 setNavItems(data?.navItems);
             } catch {
-                setNavItems([]);
+                setNavItems(NAVBAR_FALLBACK.navItems);
+                NAVBAR_FALLBACK
             }
         };
         fetchNavData();

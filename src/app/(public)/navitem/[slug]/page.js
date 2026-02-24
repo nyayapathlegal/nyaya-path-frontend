@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import { getNavItems } from "@/api/home/home.api";
 import HeaderPages from "./HeaderPages";
 import HeaderPagesSkeleton from "@/components/Skeletons/HeaderPagesSkeleton";
+import { NAVBAR_FALLBACK } from "@/config/fallbacks/navItemsFallback";
 
 const NavItemPage = () => {
     const { slug } = useParams();
@@ -14,8 +15,8 @@ const NavItemPage = () => {
     useEffect(() => {
         async function fetchPage() {
             try {
-                const data = await getNavItems();
-                const navItems = data.navItems || [];
+                // const data = await getNavItems();
+                const navItems =  NAVBAR_FALLBACK.navItems;
 
                 const findPageBySlug = (items, targetSlug) => {
                     for (const nav of items) {
